@@ -1,0 +1,11 @@
+.btn-add {
+  box-sizing: border-box;
+  padding: 0;
+  border: 2px solid #FFFFFF;
+  width: 150px;
+  height: 50px;
+  background-color: #000000;
+  outline: none;
+  cursor: pointer;
+}
+

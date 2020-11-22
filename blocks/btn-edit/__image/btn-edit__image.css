@@ -1,0 +1,7 @@
+.btn-edit__image {
+  transition: all .9s ease-in-out;
+}
+
+.btn-edit__image:hover {
+  opacity: .3;
+}
