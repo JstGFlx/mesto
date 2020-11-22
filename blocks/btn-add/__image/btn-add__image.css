@@ -1,7 +1,0 @@
-.btn-add__image {
-  transition: all 0.9s ease-in-out;
-}
-
-.btn-add__image:hover {
-  transform: rotate(90deg);
-}
