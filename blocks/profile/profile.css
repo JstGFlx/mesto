@@ -3,5 +3,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 39.25px auto 0;
-  max-width: 884px;
+  max-width: 922px;
+  padding: 0 19px;
+  box-sizing: border-box;
 }

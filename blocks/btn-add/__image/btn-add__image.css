@@ -4,5 +4,4 @@
 
 .btn-add__image:hover {
   transform: rotate(90deg);
-  opacity: .3;
 }
