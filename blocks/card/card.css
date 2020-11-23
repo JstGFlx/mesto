@@ -1,10 +1,34 @@
 .card {
   width: 282px;
   height: 361px;
-  margin: 0 17px 21px 0;
+  margin: 0 17px 20px 0;
   border-radius: 10px;
 }
 
 .card:nth-child(3n) {
   margin: 0;
+}
+
+@media (max-width: 914px) {
+  .card:nth-child(3n) {
+    margin: 0 17px 20px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0;
+  }
+}
+
+@media (max-width: 692px) {
+  .card {
+		margin: 0 0 20px 0;
+	}
+
+  .card:nth-child(3n) {
+    margin: 0 0 20px 0;
+  }
+
+  .card:nth-child(2n) {
+    margin: 0 0 20px 0;
+  }
 }

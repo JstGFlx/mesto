@@ -9,3 +9,11 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 692px) {
+  .profile__name {
+		margin-left: 31px;
+		font-size: 27px;
+    line-height: 33px;
+  }
+}

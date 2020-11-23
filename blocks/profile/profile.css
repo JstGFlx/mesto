@@ -7,3 +7,10 @@
   padding: 0 19px;
   box-sizing: border-box;
 }
+
+@media (max-width: 692px) {
+  .profile {
+    flex-direction: column;
+    justify-content: center;
+  }
+}  

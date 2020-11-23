@@ -6,3 +6,11 @@
     height: 74px;
     border-bottom: 1px solid rgb(84,84,84, .7);
 }
+
+@media (max-width: 692px) {
+    .header {
+			padding: 0 27px;
+			height: 56px;
+      margin: 28px auto 0;
+    }
+  }

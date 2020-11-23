@@ -14,3 +14,9 @@
   opacity: .6;
 }
 
+@media (max-width: 692px) {
+  .btn-add {
+    width: 282px;
+  }
+}
+

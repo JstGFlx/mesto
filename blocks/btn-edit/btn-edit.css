@@ -14,3 +14,11 @@
 .btn-edit:hover {
   opacity: .6;
 }
+
+@media (max-width: 692px) {
+  .btn-edit {
+		margin-left: 12px;
+		width: 18px;
+		height: 18px;
+	}
+}
