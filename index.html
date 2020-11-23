@@ -18,13 +18,13 @@
         <img src="./images/avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
         <div class="profile__info">
           <p class="profile__name">Жак-Ив Кусто</p>
-          <button class="btn-edit">
+          <button class="btn-edit" type=”button”>
             <img src="./images/btn-pencil.svg" alt="изменить" class="btn-edit__image">
           </button>
           <p class="profile__about-me">Исследователь океана</p>
         </div>
       </container>
-      <button class="btn-add">
+      <button class="btn-add" type=”button”>
         <img src="./images/btn-plus.svg" alt="" class="btn-add__image">
       </button>
     </section>
@@ -33,45 +33,56 @@
         <img class="card__image" src="./images/card-images/card-image (1).jpg" alt="Карачаево-Черкесия" >
         <div class="card__block">
           <p class="card__name">Карачаево-Черкесия</p>
-          <img src="./images/card-images/card-like.svg" alt="мне нравится" class="card__like">
+          <button class="card__like" type=”button”></button>
         </div>
       </article>
       <article class="card">
         <img class="card__image" src="./images/card-images/card-image (3).jpg" alt="Гора Эльбрус" >
         <div class="card__block">
           <p class="card__name">Гора Эльбрус</p>
-          <img src="./images/card-images/card-like.svg" alt="мне нравится" class="card__like">
+          <button class="card__like" type=”button”></button>
         </div>
       </article>
       <article class="card">
         <img class="card__image" src="./images/card-images/card-image (2).jpg" alt="Домбай" >
         <div class="card__block">
           <p class="card__name">Домбай</p>
-          <img src="./images/card-images/card-like.svg" alt="мне нравится" class="card__like">
+          <button class="card__like" type=”button”></button>
         </div>
       </article>
       <article class="card">
         <img class="card__image" src="./images/card-images/card-image (5).jpg" alt="Гора Эльбрус" >
         <div class="card__block">
           <p class="card__name">Гора Эльбрус</p>
-          <img src="./images/card-images/card-like.svg" alt="мне нравится" class="card__like">
+          <button class="card__like" type=”button”></button>
         </div>
       </article>
       <article class="card">
         <img class="card__image" src="./images/card-images/card-image (4).jpg" alt="Домбай" >
         <div class="card__block">
           <p class="card__name">Домбай</p>
-          <img src="./images/card-images/card-like.svg" alt="мне нравится" class="card__like">
+          <button class="card__like" type=”button”></button>
         </div>
       </article>
       <article class="card">
         <img class="card__image" src="./images/card-images/card-image (6).jpg" alt="Карачаево-Черкесия" >
         <div class="card__block">
           <p class="card__name">Карачаево-Черкесия</p>
-          <img src="./images/card-images/card-like.svg" alt="мне нравится" class="card__like">
+          <button class="card__like" type=”button”></button>
         </div>
       </article>
-    </section>
+		</section>
+		<div class="popup">
+			<form action="#" class="popup__container">
+				<button class="btn-close"  type=”button”>
+					<img class="popup__close-icon" src="./images/popup-closeIcon.svg" alt="закрыть">
+				</button>
+				<p class="popup__title">Редактировать профиль</p>
+				<input type="text" class="popup__input popup__input_name">
+				<input type="text" class="popup__input popup__input_about-me">
+				<button class="btn-submit" type=”submit”>Сохранить</button>
+			</form>
+		</div>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>

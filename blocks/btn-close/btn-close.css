@@ -1,0 +1,22 @@
+.btn-close {
+	position: absolute;
+	background-color: Transparent;
+	padding: 0;
+	border: 0;
+	top: -53px;
+	right: -48px;
+	cursor: pointer;
+	outline: none;
+  transition: all .3s ease-in-out;
+}
+
+.btn-close:hover {
+  opacity: .6;
+}
+
+@media (max-width: 692px) {
+  .btn-close {
+		top: -43px;
+	  right: 0;
+  }
+}

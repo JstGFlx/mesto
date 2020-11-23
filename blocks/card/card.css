@@ -9,7 +9,7 @@
   margin: 0;
 }
 
-@media (max-width: 914px) {
+@media (max-width: 917px) {
   .card:nth-child(3n) {
     margin: 0 17px 20px 0;
   }
