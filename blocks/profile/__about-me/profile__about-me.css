@@ -1,9 +1,10 @@
 .profile__about-me {
-  display: block;
+	display: block;
+	width: 203px;
   margin: 10px 0 0;
   font-weight: normal;
   font-size: 18px;
-  line-height: 20px;
+	line-height: 20px;
   color: #FFFFFF;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -14,6 +15,7 @@
   .profile__about-me {
 		margin: 7px 0 33px;
 		font-size: 14px;
-    line-height: 17px;
+		line-height: 17px;
+		text-align: center;
   }
 }
