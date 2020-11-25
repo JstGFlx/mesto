@@ -12,7 +12,7 @@
 }
 
 .card__like:hover {
-  opacity: .6;
+  opacity: .5;
 }
 
 .card__like:active {

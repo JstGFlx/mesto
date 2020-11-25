@@ -2,92 +2,88 @@
 <html lang="ru">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./pages/index.css">
+	<title>Mesto</title>
 </head>
 
 <body class="body">
-  <main>
-    <header class="header">
-      <img class="header__logo" src="./images/logo/Vector.svg" alt="Логотип Место">
-    </header>
-    <section class="profile">
-      <div class="profile__container">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто">
-        <div class="profile__info">
-          <p class="profile__name">Жак-Ив Кусто</p>
-          <button class="btn-edit" type="button">
-            <img class="btn-edit__image" src="./images/btn-pencil.svg" alt="изменить">
-          </button>
-          <p class="profile__about-me">Исследователь океана</p>
-        </div>
-      </div>
-      <button class="btn-add" type="button">
-        <img class="btn-add__image" src="./images/btn-plus.svg" alt="добавить">
-      </button>
-    </section>
-    <section class="cards">
-      <article class="card">
-        <img class="card__image" src="./images/card-images/card-image(1).jpg" alt="Карачаево-Черкесия" >
-        <div class="card__block">
-          <p class="card__name">Карачаево-Черкесия</p>
-          <button class="card__like" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img class="card__image" src="./images/card-images/card-image(3).jpg" alt="Гора Эльбрус" >
-        <div class="card__block">
-          <p class="card__name">Гора Эльбрус</p>
-          <button class="card__like" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img class="card__image" src="./images/card-images/card-image(2).jpg" alt="Домбай" >
-        <div class="card__block">
-          <p class="card__name">Домбай</p>
-          <button class="card__like" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img class="card__image" src="./images/card-images/card-image(5).jpg" alt="Гора Эльбрус" >
-        <div class="card__block">
-          <p class="card__name">Гора Эльбрус</p>
-          <button class="card__like" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img class="card__image" src="./images/card-images/card-image(4).jpg" alt="Домбай" >
-        <div class="card__block">
-          <p class="card__name">Домбай</p>
-          <button class="card__like" type="button"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img class="card__image" src="./images/card-images/card-image(6).jpg" alt="Карачаево-Черкесия" >
-        <div class="card__block">
-          <p class="card__name">Карачаево-Черкесия</p>
-          <button class="card__like" type="button"></button>
-        </div>
-      </article>
-		</section>
-		<div class="popup">
-			<form class="popup__container">
-				<button class="btn-close" type="button">
-					<img class="popup__close-icon" src="./images/popup-closeIcon.svg" alt="закрыть">
-				</button>
-				<p class="popup__title">Редактировать профиль</p>
-				<input class="popup__input popup__input_name" type="text">
-				<input class="popup__input popup__input_about-me" type="text">
-				<button class="btn-submit" type="submit">Сохранить</button>
-			</form>
-		</div>
-  </main>
-  <footer class="footer">
-    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-	</footer>
-	<script src="./js/index.js"></script>
+	<div class="page">
+		<header class="header">
+			<img class="header__logo" src="./images/logo/Vector.svg" alt="логотип место">
+		</header>
+		<main>
+			<section class="profile">
+				<div class="profile__container">
+					<img class="profile__avatar" src="./images/avatar.jpg" alt="фотография пользователя">
+					<div class="profile__info">
+						<h1 class="profile__name">Жак-Ив Кусто</h1>
+						<button class="btn-edit" type="button" aria-label="изменить"></button>
+						<p class="profile__about-me">Исследователь океана</p>
+					</div>
+				</div>
+				<button class="btn-add" type="button" aria-label="добавить"></button>
+			</section>
+			<section class="cards">
+				<article class="card">
+					<img class="card__image" src="./images/card-images/card-image(1).jpg" alt="Карачаево-Черкесия">
+					<div class="card__block">
+						<h2 class="card__name">Карачаево-Черкесия</h2>
+						<button class="card__like" type="button" aria-label="мне нравится"></button>
+					</div>
+				</article>
+				<article class="card">
+					<img class="card__image" src="./images/card-images/card-image(3).jpg" alt="Гора Эльбрус">
+					<div class="card__block">
+						<h2 class="card__name">Гора Эльбрус</h2>
+						<button class="card__like" type="button" aria-label="мне нравится"></button>
+					</div>
+				</article>
+				<article class="card">
+					<img class="card__image" src="./images/card-images/card-image(2).jpg" alt="Домбай">
+					<div class="card__block">
+						<h2 class="card__name">Домбай</h2>
+						<button class="card__like" type="button" aria-label="мне нравится"></button>
+					</div>
+				</article>
+				<article class="card">
+					<img class="card__image" src="./images/card-images/card-image(5).jpg" alt="Гора Эльбрус">
+					<div class="card__block">
+						<h2 class="card__name">Гора Эльбрус</h2>
+						<button class="card__like" type="button" aria-label="мне нравится"></button>
+					</div>
+				</article>
+				<article class="card">
+					<img class="card__image" src="./images/card-images/card-image(4).jpg" alt="Домбай">
+					<div class="card__block">
+						<h2 class="card__name">Домбай</h2>
+						<button class="card__like" type="button" aria-label="мне нравится"></button>
+					</div>
+				</article>
+				<article class="card">
+					<img class="card__image" src="./images/card-images/card-image(6).jpg" alt="Карачаево-Черкесия">
+					<div class="card__block">
+						<h2 class="card__name">Карачаево-Черкесия</h2>
+						<button class="card__like" type="button" aria-label="мне нравится"></button>
+					</div>
+				</article>
+			</section>
+			<div class="popup">
+				<form class="popup__container">
+					<button class="btn-close" type="button" aria-label="закрыть"></button>
+					<h2 class="popup__title">Редактировать профиль</h2>
+					<input class="popup__input popup__input_text_name" type="text">
+					<input class="popup__input popup__input_text_about-me" type="text">
+					<button class="btn-submit" type="submit" aria-label="сохранить">Сохранить</button>
+				</form>
+			</div>
+		</main>
+		<footer class="footer">
+			<p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+		</footer>
+		<script src="./js/index.js"></script>
+	</div>
 </body>
 
 </html>

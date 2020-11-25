@@ -7,6 +7,5 @@
 @media (max-width: 692px) {
   .profile__container {
     flex-direction: column;
-    align-items: center;
   }
 }  
