@@ -1,7 +1,16 @@
 .btn-close {
   width: 56.56px;
+  height: 56.56px;
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  background-image: url('../../images/popup-closeIcon.svg');
   background-repeat: no-repeat;
   background-size: cover;
+  position: absolute;
+  top: -48px;
+  right: -48px;
   cursor: pointer;
   outline: none;
   transition: all .3s ease-in-out;
