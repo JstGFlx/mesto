@@ -9,4 +9,4 @@
 * Интерактивный попап редактирования профиля на JS
 
 
-[cсылка на проект](https://jstgflx.github.io/mesto//)
+[cсылка на проект](https://jstgflx.github.io/mesto/)
