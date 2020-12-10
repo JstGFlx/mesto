@@ -1,6 +1,6 @@
 .popup__container {
+	padding: 34px 36px 37px;
   width: 430px;
-  padding-bottom: 37px;
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 10px;
@@ -8,8 +8,13 @@
 }
 
 @media (max-width: 692px) {
-  .popup__container {
-   width: 282px;
-   padding-bottom: 25px;
-  }
+  #profileEditForm {
+	 width: 282px;
+	 padding: 25px 22px;
+	}
+	
+	#profileAddForm {
+		width: 240px;
+		padding: 30px 20px;
+	}
 } 

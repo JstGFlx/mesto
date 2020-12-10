@@ -1,0 +1,7 @@
+@media (max-width: 692px) {
+  .btn-submit_type_add {
+    width: 200px;
+    height: 40px;
+    margin-top: 36px;
+  }
+}
