@@ -53,19 +53,30 @@ function renderList() {
 	listContainerElement.append(...listItems);
 }
 
-function composeItem(item) {
-	const newItem = templateCardElement.content.cloneNode(true);
+function composeItem(item) { // функция создания карточки
+	const newItem = templateCardElement.content.cloneNode(true); 
+	const cardElement = newItem.querySelector('.card');
 	const titleElement = newItem.querySelector('.card__name');
 	const imgElement = newItem.querySelector('.card__image');
 	const likeElement = newItem.querySelector('.card__like');
-	titleElement.textContent = item.name;
-	imgElement.src = item.link;
+	titleElement.textContent = item.name; //тут беру описание карточки из массива
+	imgElement.src = item.link; // тут беру ссылку на картинку из массива
 	removeListenerToItem(newItem);
 	likeElement.addEventListener('click', (event)=> {
 		event.target.classList.toggle('card__like_active')
 	});
 	imgElement.addEventListener('click', showImagePopup);
 	return newItem;
+}
+
+function showImagePopup(event) {
+	const targetCard = event.target.closest('.card'); // поменял на кард
+	const targetImage =  targetCard.querySelector('.card__image');
+	const targetDescription = targetCard.querySelector('.card__name');
+	/* const targetDescription = event.target.closest('.card__name'); */
+	descriptionPopupImage.textContent = targetDescription.textContent;
+	picturePopupImage.src = targetImage.src; // тут нужная картинка передается в попап
+	handlePopupOpenButtonClick(popupShowImage);
 }
 
 function AddNewCard(event) {
@@ -75,14 +86,6 @@ function AddNewCard(event) {
 	const item = composeItem({ name: inputTextTitle, link: inputTextLink})
 	listContainerElement.prepend(item);
 	handlePopupCloseButtonClick(popupAddCard);
-}
-
-function showImagePopup(event) {
-	const targetImage = event.target.closest('.card__image');
-	/* const targetDescription = event.target.closest('.card__name');
-	descriptionPopupImage.textContent = targetDescription.textContent; */
-	picturePopupImage.src = targetImage.src;
-	handlePopupOpenButtonClick(popupShowImage);
 }
 
 function handlePopupCloseButtonClick(popup) {
@@ -120,6 +123,11 @@ function writeProfileInfo() {
 }
 
 renderList();
+
+const cardImage = document.querySelector('.card__name');
+cardImage.addEventListener('click', ()=> {
+	console.log('click');
+})
 
 buttonEdit.addEventListener('click', ()=>handlePopupOpenButtonClick(popupProfileEdit));
 buttonAdd.addEventListener('click', ()=>handlePopupOpenButtonClick(popupAddCard));
