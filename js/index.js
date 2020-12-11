@@ -1,28 +1,28 @@
 const initialCards = [
-	{
-		name: 'Архыз',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-	},
-	{
-		name: 'Челябинская область',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-	},
-	{
-		name: 'Иваново',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-	},
-	{
-		name: 'Камчатка',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-	},
-	{
-		name: 'Холмогорский район',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-	},
-	{
-		name: 'Байкал',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-	}
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
 ];
 const buttonEdit = document.querySelector('.btn-edit'); // кнопка редактировать профиль 
 const buttonAdd = document.querySelector('.btn-add'); // кнопка добавить карточку
@@ -49,59 +49,58 @@ let profileName = document.querySelector('.profile__name'); // имя профи
 let profileJob = document.querySelector('.profile__about-me'); // вид деятельности
 
 function renderList() { 
-	const listItems = initialCards.map(composeItem);
-	listContainerElement.append(...listItems);
+  const listItems = initialCards.map(composeItem);
+  listContainerElement.append(...listItems);
 }
 
 function composeItem(item) { // функция создания карточки
-	const newItem = templateCardElement.content.cloneNode(true); 
-	const cardElement = newItem.querySelector('.card');
-	const titleElement = newItem.querySelector('.card__name');
-	const imgElement = newItem.querySelector('.card__image');
-	const likeElement = newItem.querySelector('.card__like');
-	titleElement.textContent = item.name; //тут беру описание карточки из массива
-	imgElement.src = item.link; // тут беру ссылку на картинку из массива
-	removeListenerToItem(newItem);
-	likeElement.addEventListener('click', (event)=> {
-		event.target.classList.toggle('card__like_active')
-	});
-	imgElement.addEventListener('click', showImagePopup);
-	return newItem;
+  const newItem = templateCardElement.content.cloneNode(true); 
+  const cardElement = newItem.querySelector('.card');
+  const titleElement = newItem.querySelector('.card__name');
+  const imgElement = newItem.querySelector('.card__image');
+  const likeElement = newItem.querySelector('.card__like');
+  titleElement.textContent = item.name; //тут беру описание карточки из массива
+  imgElement.src = item.link; // тут беру ссылку на картинку из массива
+  removeListenerToItem(newItem);
+  likeElement.addEventListener('click', (event)=> {
+  event.target.classList.toggle('card__like_active')
+  });
+  imgElement.addEventListener('click', showImagePopup);
+  return newItem;
 }
 
 function showImagePopup(event) {
-	const targetCard = event.target.closest('.card'); // поменял на кард
-	const targetImage =  targetCard.querySelector('.card__image');
-	const targetDescription = targetCard.querySelector('.card__name');
-	/* const targetDescription = event.target.closest('.card__name'); */
-	descriptionPopupImage.textContent = targetDescription.textContent;
-	picturePopupImage.src = targetImage.src; // тут нужная картинка передается в попап
-	handlePopupOpenButtonClick(popupShowImage);
+  const targetCard = event.target.closest('.card');
+  const targetImage =  targetCard.querySelector('.card__image');
+  const targetDescription = targetCard.querySelector('.card__name');
+  descriptionPopupImage.textContent = targetDescription.textContent;
+  picturePopupImage.src = targetImage.src;
+  handlePopupOpenButtonClick(popupShowImage);
 }
 
 function AddNewCard(event) {
-	event.preventDefault();
-	const inputTextTitle = titleInput.value;
-	const inputTextLink = linkInput.value;
-	const item = composeItem({ name: inputTextTitle, link: inputTextLink})
-	listContainerElement.prepend(item);
-	handlePopupCloseButtonClick(popupAddCard);
+  event.preventDefault();
+  const inputTextTitle = titleInput.value;
+  const inputTextLink = linkInput.value;
+  const item = composeItem({ name: inputTextTitle, link: inputTextLink})
+  listContainerElement.prepend(item);
+  handlePopupCloseButtonClick(popupAddCard);
 }
 
 function handlePopupCloseButtonClick(popup) {
-	popup.classList.remove('popup_opened');
-	formEditElement.reset();
-	formAddElement.reset();
+  popup.classList.remove('popup_opened');
+  formEditElement.reset();
+  formAddElement.reset();
 }
 
 function handlePopupOpenButtonClick(popup) {
-	writeProfileInfo();
+  writeProfileInfo();
   popup.classList.add('popup_opened');
 }
 
 function removeListenerToItem(item) {
-	const buttonDelete = item.querySelector('.btn-delete');
-	buttonDelete.addEventListener('click', removeItem);
+  const buttonDelete = item.querySelector('.btn-delete');
+  buttonDelete.addEventListener('click', removeItem);
 }
 
 function removeItem(event){
@@ -111,10 +110,10 @@ function removeItem(event){
 
 
 function editProfileInfo(event) {
-	event.preventDefault();
-	profileName.textContent = nameInput.value;
-	profileJob.textContent = jobInput.value;
-	handlePopupCloseButtonClick(popupProfileEdit);
+  event.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  handlePopupCloseButtonClick(popupProfileEdit);
 }
 
 function writeProfileInfo() {
@@ -123,11 +122,6 @@ function writeProfileInfo() {
 }
 
 renderList();
-
-const cardImage = document.querySelector('.card__name');
-cardImage.addEventListener('click', ()=> {
-	console.log('click');
-})
 
 buttonEdit.addEventListener('click', ()=>handlePopupOpenButtonClick(popupProfileEdit));
 buttonAdd.addEventListener('click', ()=>handlePopupOpenButtonClick(popupAddCard));
