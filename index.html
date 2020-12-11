@@ -2,72 +2,72 @@
 <html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./pages/index.css">
-	<title>Mesto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
 </head>
 
 <body class="body">
-	<div class="page">
-		<header class="header">
-			<img class="header__logo" src="./images/logo/Vector.svg" alt="логотип место">
-		</header>
-		<main>
-			<section class="profile">
-				<div class="profile__container">
-					<img class="profile__avatar" src="./images/avatar.jpg" alt="фотография пользователя">
-					<div class="profile__info">
-						<h1 class="profile__name">Жак-Ив Кусто</h1>
-						<button class="btn-edit" type="button" aria-label="изменить"></button>
-						<p class="profile__about-me">Исследователь океана</p>
-					</div>
-				</div>
-				<button class="btn-add" type="button" aria-label="добавить"></button>
-			</section>
-			<section class="cards">
-				<template class="template">
-					<article class="card">
-						<button class="btn-delete" type="button" aria-label="удалить"></button>
-						<img class="card__image" src="#" alt="Изображение места">
-						<div class="card__block">
-							<h2 class="card__name"></h2>
-							<button class="card__like" type="button" aria-label="мне нравится"></button>
-						</div>
-					</article>
-				</template>
-			</section>
-			<div class="popup popup_type_edit">
-				<form class="popup__container" id="profileEditForm">
-					<button class="btn-close btn-close_type_edit" type="button" aria-label="закрыть"></button>
-					<h2 class="popup__title">Редактировать профиль</h2>
-					<input class="popup__input popup__input_text_name" type="text">
-					<input class="popup__input popup__input_text_about-me" type="text">
-					<button class="btn-submit btn-submit_type_edit" type="submit" aria-label="сохранить">Сохранить</button>
-				</form>
-			</div>
-			<div class="popup popup_type_add">
-				<form class="popup__container" id="profileAddForm">
-					<button class="btn-close" type="button" aria-label="закрыть"></button>
-					<h2 class="popup__title">Новое место</h2>
-					<input class="popup__input popup__input_text_title" type="text" placeholder="Название">
-					<input class="popup__input popup__input_text_link" type="text" placeholder="Ссылка на картинку">
-					<button class="btn-submit btn-submit_type_add" type="submit" aria-label="сохранить">Создать</button>
-				</form>
-			</div>
-			<div class="popup-img">
-				<div class="popup-img__wrapper">
-					<button class="btn-close" type="button" aria-label="закрыть"></button>
-					<img class="popup-img__image" src="#" alt="картинка">
-					<p class="popup-img__description"></p>
-				</div>
-			</div>
-		</main>
-		<footer class="footer">
-			<p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-		</footer>
-		<script src="./js/index.js"></script>
-	</div>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo/Vector.svg" alt="логотип место">
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__container">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="фотография пользователя">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="btn-edit" type="button" aria-label="изменить"></button>
+            <p class="profile__about-me">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="btn-add" type="button" aria-label="добавить"></button>
+      </section>
+      <section class="cards">
+        <template class="template">
+          <article class="card">
+            <button class="btn-delete" type="button" aria-label="удалить"></button>
+            <img class="card__image" src="#" alt="Изображение места">
+            <div class="card__block">
+              <h2 class="card__name"></h2>
+              <button class="card__like" type="button" aria-label="мне нравится"></button>
+            </div>
+          </article>
+        </template>
+      </section>
+      <div class="popup popup_type_edit">
+        <form class="popup__container" id="profileEditForm">
+          <button class="btn-close btn-close_type_edit" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input popup__input_text_name" type="text">
+          <input class="popup__input popup__input_text_about-me" type="text">
+          <button class="btn-submit btn-submit_type_edit" type="submit" aria-label="сохранить">Сохранить</button>
+        </form>
+      </div>
+      <div class="popup popup_type_add">
+        <form class="popup__container" id="profileAddForm">
+          <button class="btn-close" type="button" aria-label="закрыть"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input popup__input_text_title" type="text" placeholder="Название">
+          <input class="popup__input popup__input_text_link" type="text" placeholder="Ссылка на картинку">
+          <button class="btn-submit btn-submit_type_add" type="submit" aria-label="сохранить">Создать</button>
+        </form>
+      </div>
+      <div class="popup-img">
+        <div class="popup-img__wrapper">
+          <button class="btn-close" type="button" aria-label="закрыть"></button>
+          <img class="popup-img__image" src="#" alt="картинка">
+          <p class="popup-img__description"></p>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <script src="./js/index.js"></script>
+  </div>
 </body>
 
 </html>
