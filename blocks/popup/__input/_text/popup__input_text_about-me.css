@@ -1,9 +1,9 @@
 .popup__input_text_about-me {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 @media (max-width: 692px) {
   .popup__input_text_about-me {
-		width: 238px;
+    width: 238px;
   }
 }
