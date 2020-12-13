@@ -56,6 +56,7 @@ function AddNewCard(event) {
   const inputTextLink = linkInput.value;
   const item = composeItem({ name: inputTextTitle, link: inputTextLink})
   listContainerElement.prepend(item);
+  formAddElement.reset();
   handlePopupCloseButtonClick(popupAddCard);
 }
 
