@@ -1,25 +1,21 @@
-.btn-add {
+.btn_type_add {
   box-sizing: border-box;
-  padding: 0;
   border: 2px solid #FFFFFF;
   width: 150px;
   height: 50px;
   background-color: #000000;
-  background-image: url('../../images/btn-plus.svg');
+  background-image: url('../../../images/btn-plus.svg');
   background-repeat: no-repeat;
   background-position: center;
-  outline: none;
-  cursor: pointer;
   transition: all .3s ease-in-out;
 }
 
-.btn-add:hover {
+.btn_type_add:hover {
   opacity: .6;
 }
 
 @media (max-width: 753px) {
-  .btn-add {
+  .btn_type_add {
     width: 282px;
   }
 }
-

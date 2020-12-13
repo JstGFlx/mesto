@@ -8,12 +8,7 @@
 }
 
 @media (max-width: 692px) {
-  #profileEditForm {
-    width: 282px;
-    padding: 25px 22px;
-  }
-	
-  #profileAddForm {
+  .popup__container {
     width: 240px;
     padding: 30px 20px;
   }
