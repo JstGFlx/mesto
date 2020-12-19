@@ -143,6 +143,7 @@ buttonAdd.addEventListener('click', () => {
 	formAddElement.reset();
 	resetValidityMassage(popupAddCard);
 	openPopup(popupAddCard);
+	enableValidation(validationConfig);
 });
 buttonCloseImgPopup.addEventListener('click', () => closePopup(popupShowImage));
 formEditElement.addEventListener('submit', editProfileInfo);
