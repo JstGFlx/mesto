@@ -129,7 +129,6 @@ buttonEdit.addEventListener('click', () => {
 	resetValidityMassage(popupProfileEdit);
 	openPopup(popupProfileEdit);
 	writeProfileInfo();
-	enableValidation(validationConfig);
 });
 buttonCloseEditPopup.addEventListener('click', () => {
 	closePopup(popupProfileEdit);
