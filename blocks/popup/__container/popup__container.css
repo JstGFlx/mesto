@@ -4,7 +4,8 @@
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 10px;
-  position: relative;
+	position: relative;
+	cursor: default;
 }
 
 @media (max-width: 692px) {
