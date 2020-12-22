@@ -37,7 +37,8 @@ function composeItem(item) { // функция создания карточки
 		event.target.classList.toggle('card__like_active')
 	});
 	imgElement.addEventListener('click', () => {
-		showImagePopup(item.link, item.name)
+    showImagePopup(item.link, item.name)
+    hoverBtnCloseByOverlay(popupShowImage);
 	});
 	return newItem;
 }
@@ -105,9 +106,9 @@ function resetValidityMassage(event) {
 
 function closePopupByClick(popup) {
 	popup.addEventListener('mousedown', (event) => {
-		const target = event.target;
+    const target = event.target;
 		if (target.classList.contains('popup_opened')) {
-			closePopup(popup);
+      closePopup(popup);
 		}
 	});
 }
@@ -120,6 +121,23 @@ function closeByEscape(evt) {
 	}
 }
 
+function hoverBtnCloseByOverlay(popup) {
+  const btnClose = popup.querySelector('.btn_type_close');
+  popup.addEventListener('mouseover', (event) => {
+    const target = event.target;
+    if (target.classList.contains('popup_opened')) {
+      btnClose.classList.add('btn_hover');
+    }
+  })
+  popup.addEventListener('mouseout', (event) => {
+    const target = event.target;
+    if (target.classList.contains('popup_opened')) {
+      btnClose.classList.remove('btn_hover');
+    }
+  })
+}
+
+
 renderList();
 closePopupByClick(popupProfileEdit);
 closePopupByClick(popupAddCard);
@@ -127,7 +145,8 @@ closePopupByClick(popupShowImage);
 
 buttonEdit.addEventListener('click', () => {
 	resetValidityMassage(popupProfileEdit);
-	openPopup(popupProfileEdit);
+  openPopup(popupProfileEdit);
+  hoverBtnCloseByOverlay(popupProfileEdit);
 	writeProfileInfo();
 	enableValidation(validationConfig);
 });
@@ -136,13 +155,14 @@ buttonCloseEditPopup.addEventListener('click', () => {
 	formEditElement.reset();
 });
 buttonCloseAddPopup.addEventListener('click', () => {
-	closePopup(popupAddCard);
+  closePopup(popupAddCard);
 	formAddElement.reset();
 });
 buttonAdd.addEventListener('click', () => {
 	formAddElement.reset();
 	resetValidityMassage(popupAddCard);
-	openPopup(popupAddCard);
+  openPopup(popupAddCard);
+  hoverBtnCloseByOverlay(popupAddCard);
 	enableValidation(validationConfig);
 });
 buttonCloseImgPopup.addEventListener('click', () => closePopup(popupShowImage));
