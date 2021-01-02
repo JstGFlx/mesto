@@ -6,12 +6,5 @@
   right: 15px;
   box-sizing: border-box;
   background-image: url('../../../images/Trash.svg');
-  background-position: center;
-  background-repeat: no-repeat;
   background-color: transparent;
-  transition: all .3s ease-in-out;
-}
-
-.btn_type_delete:hover {
-  opacity: .6;
 }

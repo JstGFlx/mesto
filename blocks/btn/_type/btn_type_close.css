@@ -4,16 +4,9 @@
   box-sizing: border-box;
   background-color: transparent;
   background-image: url('../../../images/popup-closeIcon.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
   position: absolute;
   top: -48px;
   right: -48px;
-  transition: all .3s ease-in-out;
-}
-
-.btn_type_close:hover {
-  opacity: .6;
 }
 
 @media (max-width: 692px) {

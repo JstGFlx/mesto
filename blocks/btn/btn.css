@@ -3,4 +3,11 @@
   border: 0;
   outline: none;
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all .3s ease-in-out;
+}
+
+.btn:hover {
+  opacity: .6;
 }

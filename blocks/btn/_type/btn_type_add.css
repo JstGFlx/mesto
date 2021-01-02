@@ -5,13 +5,6 @@
   height: 50px;
   background-color: #000000;
   background-image: url('../../../images/btn-plus.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: all .3s ease-in-out;
-}
-
-.btn_type_add:hover {
-  opacity: .6;
 }
 
 @media (max-width: 753px) {

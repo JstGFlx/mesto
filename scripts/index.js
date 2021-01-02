@@ -34,7 +34,7 @@ function composeItem(item) { // функция создания карточки
 	imgElement.alt = item.name;
 	addDeleteCardListener(newItem);
 	likeElement.addEventListener('click', (event) => {
-		event.target.classList.toggle('card__like_active')
+    event.target.classList.toggle('card__like_active');
 	});
 	imgElement.addEventListener('click', () => {
     showImagePopup(item.link, item.name)
@@ -47,7 +47,8 @@ function showImagePopup(link, name) { // функция открытия поп�
 	picturePopupImage.src = link;
 	picturePopupImage.alt = name;
 	descriptionPopupImage.textContent = name;
-	openPopup(popupShowImage);
+  openPopup(popupShowImage);
+  
 }
 
 function addNewCard(event) {
@@ -123,6 +124,7 @@ function closeByEscape(evt) {
 
 function hoverBtnCloseByOverlay(popup) {
   const btnClose = popup.querySelector('.btn_type_close');
+  btnClose.classList.remove('btn_hover');
   popup.addEventListener('mouseover', (event) => {
     const target = event.target;
     if (target.classList.contains('popup_opened')) {
@@ -137,7 +139,6 @@ function hoverBtnCloseByOverlay(popup) {
   })
 }
 
-
 renderList();
 closePopupByClick(popupProfileEdit);
 closePopupByClick(popupAddCard);
@@ -147,8 +148,8 @@ buttonEdit.addEventListener('click', () => {
 	resetValidityMassage(popupProfileEdit);
   openPopup(popupProfileEdit);
   hoverBtnCloseByOverlay(popupProfileEdit);
-	writeProfileInfo();
-	enableValidation(validationConfig);
+  writeProfileInfo();
+  enableValidation(validationConfig);
 });
 buttonCloseEditPopup.addEventListener('click', () => {
 	closePopup(popupProfileEdit);
@@ -160,10 +161,10 @@ buttonCloseAddPopup.addEventListener('click', () => {
 });
 buttonAdd.addEventListener('click', () => {
 	formAddElement.reset();
-	resetValidityMassage(popupAddCard);
+  resetValidityMassage(popupAddCard);
+  enableValidation(validationConfig);
   openPopup(popupAddCard);
   hoverBtnCloseByOverlay(popupAddCard);
-	enableValidation(validationConfig);
 });
 buttonCloseImgPopup.addEventListener('click', () => closePopup(popupShowImage));
 formEditElement.addEventListener('submit', editProfileInfo);
