@@ -26,8 +26,8 @@ function checkInputValidity(form, input, config) {
 	}
 }
 
-function setButtonState(button, isAcrive, config) {
-	if (isAcrive) {
+function setButtonState(button, isActive, config) {
+	if (isActive) {
 		button.classList.remove(config.inactiveButtonClass);
 		button.disabled = false;
 	} else {
@@ -41,7 +41,7 @@ function setEventListener(form, config) {
 	const submitButton = form.querySelector(config.submitButtonSelector);
 
 	inputList.forEach((input) => {
-		input.addEventListener('input', (evt) => {
+		input.addEventListener('input', () => {
 			checkInputValidity(form, input, config);
 			setButtonState(submitButton, form.checkValidity(), config);
 		});
