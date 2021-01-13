@@ -1,61 +1,81 @@
 const validationConfig = {
-	formSelector: '.popup__form',
-	inputSelector: '.popup__input',
-	submitButtonSelector: '.popup__button',
-	inactiveButtonClass: 'popup__button_disabled',
-	inputErrorClass: 'popup__input_type_error',
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
 };
 
-function showError(form, input, config) {
-	const error = form.querySelector(`#${input.id}-error`);
-	error.textContent = input.validationMessage;
-	input.classList.add(config.inputErrorClass);
+const popupProfileEdit = document.querySelector('.popup_type_edit'); // попап с формой редактирования профиля 
+const popupAddCard = document.querySelector('.popup_type_add'); // попап с формой добавления карточки
+const formEditElement = popupProfileEdit.querySelector('.popup__form'); // форма редактирования профиля
+const formAddElement = popupAddCard.querySelector('.popup__form'); // форма добавления элемента
+class FormValidator {
+  constructor(data, form) {
+    this._form = form;
+    this._input = data.inputSelector;
+    this._submitButton = data.submitButtonSelector;
+    this._inactiveButton = data.inactiveButtonClass;
+    this._inputError = data.inputErrorClass;
+  }
+
+  _showError(input) {
+    this._error = this._form.querySelector(`#${input.id}-error`);
+    this._error.textContent = input.validationMessage;
+    input.classList.add(this._inputError);
+  }
+
+  _hideError(input) {
+    this._error = this._form.querySelector(`#${input.id}-error`);
+    this._error.textContent = "";
+    input.classList.remove(this._inputError);
+  }
+
+  _checkInvalidInput() {
+    return this._inputList.some((input) => {
+      return !input.validity.valid;
+    })
+  }
+
+  _checkInputValidity(input) {
+    if (input.validity.valid) {
+      this._hideError(input);
+    } else {
+      this._showError(input);
+    }
+  }
+
+  _setButtonState() {
+    if (!this._checkInvalidInput()) {
+      this._button.classList.remove(this._inactiveButton);
+      this._button.disabled = false;
+    } else {
+      this._button.classList.add(this._inactiveButton);
+      this._button.disabled = true;
+    }
+  }
+
+  _setEventListener() {
+    this._inputList = [...this._form.querySelectorAll(this._input)];
+    this._button = this._form.querySelector(this._submitButton);
+
+    this._inputList.forEach((input) => {
+      input.addEventListener("input", () => {
+        this._checkInputValidity(input);
+        this._setButtonState();
+      });
+    });
+  }
+
+  enableValidation() {
+    this._setEventListener();
+    this._setButtonState();
+  }
 }
 
-function hideError(form, input, config) {
-	const error = form.querySelector(`#${input.id}-error`);
-	error.textContent = '';
-	input.classList.remove(config.inputErrorClass);
-}
 
-function checkInputValidity(form, input, config) {
-	if (input.validity.valid) {
-		hideError(form, input, config);
-	} else {
-		showError(form, input, config);
-	}
-}
 
-function setButtonState(button, isActive, config) {
-	if (isActive) {
-		button.classList.remove(config.inactiveButtonClass);
-		button.disabled = false;
-	} else {
-		button.classList.add(config.inactiveButtonClass);
-		button.disabled = true;
-	}
-}
+const validatorEdit = new FormValidator(validationConfig, formEditElement);
+const validatorAdd = new FormValidator(validationConfig, formAddElement);
 
-function setEventListener(form, config) {
-	const inputList = form.querySelectorAll(config.inputSelector);
-	const submitButton = form.querySelector(config.submitButtonSelector);
-
-	inputList.forEach((input) => {
-		input.addEventListener('input', () => {
-			checkInputValidity(form, input, config);
-			setButtonState(submitButton, form.checkValidity(), config);
-		});
-	});
-}
-
-function enableValidation(config) {
-	const forms = document.querySelectorAll(config.formSelector);
-
-	forms.forEach((form) => {
-		setEventListener(form, config);
-		const submitButton = form.querySelector(config.submitButtonSelector);
-		setButtonState(submitButton, form.checkValidity(), config);
-	});
-
-}
 

@@ -1,13 +1,11 @@
 const buttonEdit = document.querySelector('.btn_type_edit'); // кнопка редактировать профиль 
 const buttonAdd = document.querySelector('.btn_type_add'); // кнопка добавить карточку
 const popupShowImage = document.querySelector('.popup_type_img');  // попап с увеличенной картинкой
-const popupProfileEdit = document.querySelector('.popup_type_edit'); // попап с формой редактирования профиля 
-const popupAddCard = document.querySelector('.popup_type_add'); // попап с формой добавления карточки
+
 const buttonCloseEditPopup = popupProfileEdit.querySelector('.btn_type_close'); // кнопка закрыть попап редактирования 
 const buttonCloseAddPopup = popupAddCard.querySelector('.btn_type_close');  // кнопка закрыть попап добавления
 const buttonCloseImgPopup = popupShowImage.querySelector('.btn_type_close'); // кнопка закрыть попап большого изображения
-const formEditElement = popupProfileEdit.querySelector('.popup__form'); // форма редактирования профиля
-const formAddElement = popupAddCard.querySelector('.popup__form'); // форма добавления элемента
+
 const listContainerElement = document.querySelector('.cards'); // контейнер со всеми карточками 
 const templateCardElement = document.querySelector('.template'); // темплейт элемент карточки 
 const picturePopupImage = popupShowImage.querySelector('.popup__image'); // картинка от попапа увеличения изображения
@@ -27,9 +25,9 @@ class Card {
 
   _getTemplate() {
     const cardElement = templateCardElement
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
+      .content
+      .querySelector('.card')
+      .cloneNode(true);
 
     return cardElement;
   }
@@ -42,7 +40,7 @@ class Card {
 
     return this._element;
   }
-  
+
   _handleOpenPopup() {
     picturePopupImage.src = this._image;
     descriptionPopupImage.textContent = this._title;
@@ -50,13 +48,13 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.card__image').addEventListener('click', ()=> {
+    this._element.querySelector('.card__image').addEventListener('click', () => {
       this._handleOpenPopup();
     });
-    this._element.querySelector('.card__like').addEventListener('click', (event)=> {
+    this._element.querySelector('.card__like').addEventListener('click', (event) => {
       event.target.classList.toggle('card__like_active');
     });
-    this._element.querySelector('.btn_type_delete').addEventListener('click', (event)=> {
+    this._element.querySelector('.btn_type_delete').addEventListener('click', (event) => {
       event.target.closest('.card').remove();
     });
     buttonCloseImgPopup.addEventListener('click', () => closePopup(popupShowImage));
@@ -82,78 +80,78 @@ function addNewCard(event) {
 }
 
 function closePopup(popup) {
-	popup.classList.remove('popup_opened');
-	document.removeEventListener('keydown', closeByEscape);
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 function openPopup(popup) {
-	popup.classList.add('popup_opened');
-	document.addEventListener('keydown', closeByEscape);
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function editProfileInfo(event) {
-	event.preventDefault();
-	profileName.textContent = nameInput.value;
-	profileJob.textContent = jobInput.value;
-	closePopup(popupProfileEdit);
+  event.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closePopup(popupProfileEdit);
 }
 
 function writeProfileInfo() {
-	nameInput.value = profileName.textContent;
-	jobInput.value = profileJob.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
 function resetValidityMassage(item) {
-	const errors = item.querySelectorAll('.popup__error');
-	const inputs = item.querySelectorAll('.popup__input');
+  const errors = item.querySelectorAll('.popup__error');
+  const inputs = item.querySelectorAll('.popup__input');
 
-	inputs.forEach((item) => {
-		item.classList.remove('popup__input_type_error');
-	});
-	errors.forEach((item) => {
-		item.textContent = '';
-	})
+  inputs.forEach((item) => {
+    item.classList.remove('popup__input_type_error');
+  });
+  errors.forEach((item) => {
+    item.textContent = '';
+  })
 }
 
 function closePopupByClick(popup) {
-	popup.addEventListener('mousedown', (event) => {
+  popup.addEventListener('mousedown', (event) => {
     const target = event.target;
-		if (target.classList.contains('popup_opened')) {
+    if (target.classList.contains('popup_opened')) {
       closePopup(popup);
-		}
-	});
+    }
+  });
 }
 
 function closeByEscape(evt) {
-	const escapeCode = 27;
-	if (evt.keyCode === escapeCode) {
-		const openedPopup = document.querySelector('.popup_opened')
-		closePopup(openedPopup);
-	}
+  const escapeCode = 27;
+  if (evt.keyCode === escapeCode) {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
+  }
 }
 
 closePopupByClick(popupProfileEdit);
 closePopupByClick(popupAddCard);
 closePopupByClick(popupShowImage);
 
-buttonEdit.addEventListener('click', () => {
-	resetValidityMassage(popupProfileEdit);
+buttonEdit.addEventListener("click", () => {
+  resetValidityMassage(popupProfileEdit);
   openPopup(popupProfileEdit);
   writeProfileInfo();
-  enableValidation(validationConfig);
+  validatorEdit.enableValidation();
 });
-buttonCloseEditPopup.addEventListener('click', () => {
-	closePopup(popupProfileEdit);
-	formEditElement.reset();
+buttonCloseEditPopup.addEventListener("click", () => {
+  closePopup(popupProfileEdit);
+  formEditElement.reset();
 });
-buttonCloseAddPopup.addEventListener('click', () => {
+buttonCloseAddPopup.addEventListener("click", () => {
   closePopup(popupAddCard);
-	formAddElement.reset();
+  formAddElement.reset();
 });
-buttonAdd.addEventListener('click', () => {
-	formAddElement.reset();
+buttonAdd.addEventListener("click", () => {
+  formAddElement.reset();
   resetValidityMassage(popupAddCard);
-  enableValidation(validationConfig);
+  validatorAdd.enableValidation();
   openPopup(popupAddCard);
 });
 
