@@ -1,6 +1,8 @@
 import FormValidator from './FormValidator.js';
 import { initialCards } from './initialCards.js';
 import { validationConfig } from './validationConfig.js';
+import Card from './Card.js';
+
 const buttonEdit = document.querySelector('.btn_type_edit'); // кнопка редактировать профиль 
 const buttonAdd = document.querySelector('.btn_type_add'); // кнопка добавить карточку
 const popupShowImage = document.querySelector('.popup_type_img');  // попап с увеличенной картинкой
@@ -26,49 +28,7 @@ const formAddElement = popupAddCard.querySelector('.popup__form'); // форма
 
 const validatorEdit = new FormValidator(validationConfig, formEditElement);
 const validatorAdd = new FormValidator(validationConfig, formAddElement);
-class Card {
-  constructor(data, template) {
-    this._title = data.name;
-    this._image = data.link;
-    this._template = template;
-  }
 
-  _getTemplate() {
-    const cardElement = this._template
-      .content
-      .querySelector('.card')
-      .cloneNode(true);
-
-    return cardElement;
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__name').textContent = this._title;
-
-    return this._element;
-  }
-
-  _handleOpenPopup() {
-    picturePopupImage.src = this._image;
-    descriptionPopupImage.textContent = this._title;
-    openPopup(popupShowImage);
-  }
-
-  _setEventListeners() {
-    this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
-    this._element.querySelector('.card__like').addEventListener('click', (event) => {
-      event.target.classList.toggle('card__like_active');
-    });
-    this._element.querySelector('.btn_type_delete').addEventListener('click', (event) => {
-      event.target.closest('.card').remove();
-    });
-  }
-}
 
 initialCards.forEach((item) => {
   const card = new Card(item, templateCardElement);
@@ -79,9 +39,7 @@ initialCards.forEach((item) => {
 
 function addNewCard(event) {
   event.preventDefault();
-  const inputTextTitle = titleInput.value;
-  const inputTextLink = linkInput.value;
-  const card = new Card({ name: inputTextTitle, link: inputTextLink });
+  const card = new Card({ name: titleInput.value, link: linkInput.value }, templateCardElement);
   const cardElement = card.generateCard();
   listContainerElement.prepend(cardElement);
   formAddElement.reset();
