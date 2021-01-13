@@ -27,13 +27,14 @@ const formAddElement = popupAddCard.querySelector('.popup__form'); // форма
 const validatorEdit = new FormValidator(validationConfig, formEditElement);
 const validatorAdd = new FormValidator(validationConfig, formAddElement);
 class Card {
-  constructor(data) {
+  constructor(data, template) {
     this._title = data.name;
     this._image = data.link;
+    this._template = template;
   }
 
   _getTemplate() {
-    const cardElement = templateCardElement
+    const cardElement = this._template
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -66,12 +67,11 @@ class Card {
     this._element.querySelector('.btn_type_delete').addEventListener('click', (event) => {
       event.target.closest('.card').remove();
     });
-    buttonCloseImgPopup.addEventListener('click', () => closePopup(popupShowImage));
   }
 }
 
 initialCards.forEach((item) => {
-  const card = new Card(item);
+  const card = new Card(item, templateCardElement);
   const cardElement = card.generateCard();
 
   listContainerElement.append(cardElement);
@@ -163,6 +163,8 @@ buttonAdd.addEventListener("click", () => {
   validatorAdd.enableValidation();
   openPopup(popupAddCard);
 });
+
+buttonCloseImgPopup.addEventListener('click', () => closePopup(popupShowImage));
 
 formEditElement.addEventListener('submit', editProfileInfo);
 formAddElement.addEventListener('submit', addNewCard);
