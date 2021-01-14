@@ -1,3 +1,4 @@
+// конфиг для класса валидации
 export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

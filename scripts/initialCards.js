@@ -1,3 +1,4 @@
+// конфиг начального списка карточек
 export const initialCards = [
   {
     name: 'Архыз',

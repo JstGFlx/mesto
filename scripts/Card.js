@@ -1,3 +1,4 @@
+// класс элемента карточки
 export default class Card {
   constructor(data, template, showPopup) {
     this._title = data.name;

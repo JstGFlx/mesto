@@ -1,3 +1,4 @@
+// класс валидации форм
 export default class FormValidator {
   constructor(data, form) {
     this._form = form;
