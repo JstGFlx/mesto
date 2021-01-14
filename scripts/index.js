@@ -31,7 +31,7 @@ const validatorAdd = new FormValidator(validationConfig, formAddElement);
 
 
 initialCards.forEach((item) => {
-  const card = new Card(item, templateCardElement, handleOpenPopup);
+  const card = new Card(item, templateCardElement, OpenPopupShowImage);
   const cardElement = card.generateCard();
 
   listContainerElement.append(cardElement);
@@ -39,7 +39,7 @@ initialCards.forEach((item) => {
 
 function addNewCard(event) {
   event.preventDefault();
-  const card = new Card({ name: titleInput.value, link: linkInput.value }, templateCardElement, handleOpenPopup);
+  const card = new Card({ name: titleInput.value, link: linkInput.value }, templateCardElement, OpenPopupShowImage);
   const cardElement = card.generateCard();
   listContainerElement.prepend(cardElement);
   formAddElement.reset();
@@ -63,7 +63,7 @@ function editProfileInfo(event) {
   closePopup(popupProfileEdit);
 }
 
-function handleOpenPopup(link, name) {
+function OpenPopupShowImage(link, name) {
   picturePopupImage.src = link;
   descriptionPopupImage.textContent = name;
   openPopup(popupShowImage);
