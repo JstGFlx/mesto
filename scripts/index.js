@@ -31,19 +31,22 @@ const validatorAdd = new FormValidator(validationConfig, formAddElement); // в�
 
 //инициализация начального списка карточек
 initialCards.forEach((item) => {
-  const card = new Card(item, templateCardElement, OpenPopupShowImage);
-  const cardElement = card.generateCard();
-
+  const cardElement = generateCard(item);
   listContainerElement.append(cardElement);
 });
 //функция добавления новой карточки
 function addNewCard(event) {
   event.preventDefault();
-  const card = new Card({ name: titleInput.value, link: linkInput.value }, templateCardElement, OpenPopupShowImage);
-  const cardElement = card.generateCard();
+  const cardElement = generateCard({ name: titleInput.value, link: linkInput.value });
   listContainerElement.prepend(cardElement);
   formAddElement.reset();
   closePopup(popupAddCard);
+}
+//функция создания карточки
+function generateCard(data) {
+  const card = new Card(data, templateCardElement, openPopupShowImage);
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 //функция закрытия попапа
 function closePopup(popup) {
@@ -63,7 +66,7 @@ function editProfileInfo(event) {
   closePopup(popupProfileEdit);
 }
 // функция октрытия попапа изображения карточки
-function OpenPopupShowImage(link, name) {
+function openPopupShowImage(link, name) {
   picturePopupImage.src = link;
   descriptionPopupImage.textContent = name;
   picturePopupImage.alt = name;
