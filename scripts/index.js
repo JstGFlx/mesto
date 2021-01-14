@@ -66,6 +66,7 @@ function editProfileInfo(event) {
 function OpenPopupShowImage(link, name) {
   picturePopupImage.src = link;
   descriptionPopupImage.textContent = name;
+  picturePopupImage.alt = name;
   openPopup(popupShowImage);
 }
 // функция заполенения полей инпутов формы редактирования профиля

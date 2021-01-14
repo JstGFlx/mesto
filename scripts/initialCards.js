@@ -14,8 +14,8 @@ export const initialCards = [
 
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Ставрополь',
+    link: 'https://stv24.tv/wp-content/uploads/2019/12/11/8cc25a94f1fa7968b98fb26b6231b737.jpg'
   },
   {
     name: 'Холмогорский район',
