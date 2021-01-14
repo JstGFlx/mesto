@@ -7,8 +7,8 @@
   background-image: url('../../../images/btn-plus.svg');
 }
 
-@media (max-width: 753px) {
+@media (max-width: 650px) {
   .btn_type_add {
-    width: 282px;
+    width: calc(282px + (400 - 282) * ((100vw - 320px) / (650 - 320)));
   }
 }

@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-@media (max-width: 692px) {
+@media (max-width: 650px) {
   .profile__about-me {
     margin: 7px 0 33px;
     font-size: 14px;

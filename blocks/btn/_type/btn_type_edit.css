@@ -8,7 +8,7 @@
   background-image: url('../../../images/btn-pencil.svg');
 }
 
-@media (max-width: 692px) {
+@media (max-width: 650px) {
   .btn_type_edit {
     margin-left: 12px;
     width: 18px;
