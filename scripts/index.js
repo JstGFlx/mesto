@@ -31,14 +31,12 @@ const validatorAdd = new FormValidator(validationConfig, formAddElement); // в�
 
 //инициализация начального списка карточек
 initialCards.forEach((item) => {
-  const cardElement = generateCard(item);
-  listContainerElement.append(cardElement);
+  listContainerElement.append(generateCard(item));
 });
 //функция добавления новой карточки
 function addNewCard(event) {
   event.preventDefault();
-  const cardElement = generateCard({ name: titleInput.value, link: linkInput.value });
-  listContainerElement.prepend(cardElement);
+  listContainerElement.prepend(generateCard({ name: titleInput.value, link: linkInput.value }));
   formAddElement.reset();
   closePopup(popupAddCard);
 }
