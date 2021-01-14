@@ -22,6 +22,6 @@ export const initialCards = [
   },
   {
     name: 'Новочеркасск',
-    link: 'https://srv2.imgonline.com.ua/result_img/imgonline-com-ua-AutoContrast-DFX8Cd8BC7vY.png'
+    link: 'https://foto-don.ru/photo/novocherkassk/platov_sobor0.jpg'
   }
 ];
