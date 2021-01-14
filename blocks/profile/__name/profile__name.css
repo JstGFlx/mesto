@@ -4,18 +4,23 @@
   margin: 0;
   font-weight: 500;
   font-size: 42px;
-  line-height: 114%;
+  line-height: 48px;
   color: #FFFFFF;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-@media (max-width: 692px) {
+@media (max-width: 1280px) {
+  .profile__name {
+    font-size: calc(27px + (42 - 27) * ((100vw - 320px) / (1280 - 320)));
+    line-height: calc(33px + (48 - 33) * ((100vw - 320px) / (1280 - 320)));
+  }
+}
+
+@media (max-width: 444px) {
   .profile__name {
     max-width: 224px;
     margin-left: 31px;
-    font-size: 27px;
-    line-height: 33px;
   }
 }

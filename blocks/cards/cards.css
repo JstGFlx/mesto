@@ -1,23 +1,21 @@
 .cards {
   max-width: 924px;
-  padding-left: 19px;
+  padding: 0 19px;
   box-sizing: border-box;
   margin: 51px auto 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 17px 20px;
 }
 
-@media (max-width: 932px) {
+@media (max-width: 924px) {
   .cards {
-    max-width: 623px;
+    margin-top: 35px;
   }
 }
 
 @media (max-width: 692px) {
   .cards {
-    padding: 0;
-    justify-content: center;
     margin-top: 35px;
-    max-width: 400px;
   }
 }
