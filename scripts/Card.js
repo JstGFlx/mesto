@@ -3,7 +3,7 @@ export default class Card {
   constructor(data, template, showPopup) {
     this._title = data.name;
     this._image = data.link;
-    this._template = template;
+    this._template = document.querySelector(template);
     this._showPopup = showPopup;
   }
 
