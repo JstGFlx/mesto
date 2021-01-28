@@ -2,15 +2,15 @@ import FormValidator from '../components/FormValidator.js'; // импорт кл
 import { initialCards } from '../utils/initialCards.js'; // импорт конфига списка карт
 import { validationConfig } from '../utils/validationConfig.js';  // импорт конфига валидации
 import Card from '../components/Card.js'; // импорт класса элемента карточки
-import Section from '../components/Section.js'
-import PopupWithImage from '../components/PopupWithImage.js'
-import PopupWithForm from '../components/PopupWithForm.js'
-import UserInfo from '../components/UserInfo.js'
-import { buttonEdit, buttonAdd, listContainerElement } from '../utils/constants.js'
+import Section from '../components/Section.js' // импорт класса отрисовки элементов
+import PopupWithImage from '../components/PopupWithImage.js' // импорт класса попапа увеличенной картинки
+import PopupWithForm from '../components/PopupWithForm.js' // импорт класса поапа с формой 
+import UserInfo from '../components/UserInfo.js' // импорт класса управляющего отображением информации профиля
+import { buttonEdit, buttonAdd, listContainerElement } from '../utils/constants.js' //импорт DOM элементов страницы
 
 const validatorEdit = new FormValidator(validationConfig, "edit-profile");  //включение валидации формы редактирования профиля
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
-
+//инициализация начального списка карточек
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -19,7 +19,7 @@ const cardsList = new Section({
 },
   listContainerElement
 );
-
+//инициализация попапа редактирования профиля
 const popupTypeEdit = new PopupWithForm({
   submitForm: (item) => {
     usesInfo.setUserInfo(item);
@@ -27,7 +27,7 @@ const popupTypeEdit = new PopupWithForm({
 },
   '.popup_type_edit'
 );
-
+//инициализация попапа добавления новой карточки
 const popupTypeAdd = new PopupWithForm({
   submitForm: (item) => {
     listContainerElement.prepend(generateCardElement(item));
@@ -35,9 +35,9 @@ const popupTypeAdd = new PopupWithForm({
 },
   '.popup_type_add'
 );
-
+//инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage('.popup_type_img');
-
+//инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({ name: '.profile__name', aboutMe: '.profile__about-me' })
 
 function generateCardElement(item) {
