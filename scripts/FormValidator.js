@@ -1,7 +1,7 @@
 // класс валидации форм
 export default class FormValidator {
   constructor(data, form) {
-    this._form = form;
+    this._form = document.querySelector(`form[name=${form}]`);
     this._input = data.inputSelector;
     this._submitButton = data.submitButtonSelector;
     this._inactiveButton = data.inactiveButtonClass;
