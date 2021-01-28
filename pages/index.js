@@ -1,16 +1,12 @@
-import FormValidator from './FormValidator.js'; // импорт класса валидации форм
-import { initialCards } from './initialCards.js'; // импорт конфига списка карт
-import { validationConfig } from './validationConfig.js';  // импорт конфига валидации
-import Card from './Card.js'; // импорт класса элемента карточки
-import Section from './Section.js'
-import PopupWithImage from './PopupWithImage.js'
-import PopupWithForm from './PopupWithForm.js'
-import UserInfo from './UserInfo.js'
-
-const buttonEdit = document.querySelector('.btn_type_edit'); // кнопка редактировать профиль 
-const buttonAdd = document.querySelector('.btn_type_add'); // кнопка добавить карточку
-
-const listContainerElement = document.querySelector('.cards'); // контейнер со всеми карточками 
+import FormValidator from '../components/FormValidator.js'; // импорт класса валидации форм
+import { initialCards } from '../utils/initialCards.js'; // импорт конфига списка карт
+import { validationConfig } from '../utils/validationConfig.js';  // импорт конфига валидации
+import Card from '../components/Card.js'; // импорт класса элемента карточки
+import Section from '../components/Section.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithForm from '../components/PopupWithForm.js'
+import UserInfo from '../components/UserInfo.js'
+import { buttonEdit, buttonAdd, listContainerElement } from '../utils/constants.js'
 
 const validatorEdit = new FormValidator(validationConfig, "edit-profile");  //включение валидации формы редактирования профиля
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
