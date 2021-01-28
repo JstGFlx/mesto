@@ -1,8 +1,8 @@
 // класс элемента карточки
 export default class Card {
-  constructor(data, template, showPopup) {
-    this._title = data.name;
-    this._image = data.link;
+  constructor({ name, link }, template, showPopup) {
+    this._title = name;
+    this._image = link;
     this._template = document.querySelector(template);
     this._showPopup = showPopup;
   }
