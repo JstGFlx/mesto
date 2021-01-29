@@ -1,3 +1,4 @@
+//класс генерации секции
 export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._renderedItems = items;

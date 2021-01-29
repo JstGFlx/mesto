@@ -1,3 +1,4 @@
+//общий класс для попапов
 export default class Popup {
   constructor(popup) {
     this._popup = document.querySelector(popup);
