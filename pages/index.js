@@ -15,7 +15,8 @@ const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // в�
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    cardsList.addItem(generateCardElement(item));
+    const card = new Card(item, '.template', popupTypeImage.openPopup);
+    cardsList.addItem(card.generateCard());
   },
 },
   listContainerElement
@@ -31,7 +32,8 @@ const popupTypeEdit = new PopupWithForm({
 //инициализация попапа добавления новой карточки
 const popupTypeAdd = new PopupWithForm({
   submitForm: (item) => {
-    listContainerElement.prepend(generateCardElement(item));
+    const card = new Card(item, '.template', popupTypeImage.openPopup);
+    listContainerElement.prepend(card.generateCard());
   }
 },
   '.popup_type_add'
@@ -40,13 +42,7 @@ const popupTypeAdd = new PopupWithForm({
 const popupTypeImage = new PopupWithImage('.popup_type_img');
 //инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({ name: '.profile__name', aboutMe: '.profile__about-me' })
-//функция генерации DOM элемента карточки
-function generateCardElement(item) {
-  const card = new Card(item, '.template', popupTypeImage.openPopup);
-  const cardElement = card.generateCard();
 
-  return cardElement;
-}
 //отрисовка начального списка карточек
 cardsList.renderItems();
 
