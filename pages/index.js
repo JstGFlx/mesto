@@ -39,14 +39,14 @@ const popupTypeAdd = new PopupWithForm({
 const popupTypeImage = new PopupWithImage('.popup_type_img');
 //инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({ name: '.profile__name', aboutMe: '.profile__about-me' })
-
+//функция генерации DOM элемента карточки
 function generateCardElement(item) {
   const card = new Card(item, '.template', popupTypeImage.openPopup);
   const cardElement = card.generateCard();
 
   return cardElement;
 }
-
+//отрисовка начального списка карточек
 cardsList.renderItems();
 
 popupTypeEdit.setEventListeners();
@@ -55,8 +55,8 @@ popupTypeImage.setEventListeners();
 
 buttonEdit.addEventListener("click", () => {
   popupTypeEdit.setInitialInputsValues(usesInfo.getUserInfo());
-  popupTypeEdit.openPopup();
   validatorEdit.enableValidation();
+  popupTypeEdit.openPopup();
 });
 
 buttonAdd.addEventListener("click", () => {
