@@ -7,6 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js' // импорт к�
 import PopupWithForm from '../components/PopupWithForm.js' // импорт класса поапа с формой 
 import UserInfo from '../components/UserInfo.js' // импорт класса управляющего отображением информации профиля
 import { buttonEdit, buttonAdd, listContainerElement } from '../utils/constants.js' //импорт DOM элементов страницы
+import './index.css';
 
 const validatorEdit = new FormValidator(validationConfig, "edit-profile");  //включение валидации формы редактирования профиля
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
