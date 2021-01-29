@@ -15,7 +15,6 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._submitForm(this._getInputValues());
       this.closePopup();
-      this._resetValidityMassage();
     });
   }
 
