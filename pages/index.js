@@ -1,12 +1,10 @@
 import FormValidator from '../components/FormValidator.js'; // импорт класса валидации форм
-import { initialCards } from '../utils/initialCards.js'; // импорт конфига списка карт
-import { validationConfig } from '../utils/validationConfig.js';  // импорт конфига валидации
 import Card from '../components/Card.js'; // импорт класса элемента карточки
 import Section from '../components/Section.js' // импорт класса отрисовки элементов
 import PopupWithImage from '../components/PopupWithImage.js' // импорт класса попапа увеличенной картинки
 import PopupWithForm from '../components/PopupWithForm.js' // импорт класса поапа с формой 
 import UserInfo from '../components/UserInfo.js' // импорт класса управляющего отображением информации профиля
-import { buttonEdit, buttonAdd, listContainerElement } from '../utils/constants.js' //импорт DOM элементов страницы
+import { buttonEdit, buttonAdd, listContainerElement, initialCards, validationConfig } from '../utils/constants.js' //импорт DOM элементов страницы
 import './index.css';
 
 const validatorEdit = new FormValidator(validationConfig, "edit-profile");  //включение валидации формы редактирования профиля
@@ -27,7 +25,8 @@ const popupTypeEdit = new PopupWithForm({
     usesInfo.setUserInfo(item);
   }
 },
-  '.popup_type_edit'
+  '.popup_type_edit',
+  validatorEdit.resetValidityMassage
 );
 //инициализация попапа добавления новой карточки
 const popupTypeAdd = new PopupWithForm({
@@ -36,7 +35,8 @@ const popupTypeAdd = new PopupWithForm({
     listContainerElement.prepend(card.generateCard());
   }
 },
-  '.popup_type_add'
+  '.popup_type_add',
+  validatorAdd.resetValidityMassage
 );
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage('.popup_type_img');

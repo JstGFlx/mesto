@@ -6,6 +6,8 @@ export default class FormValidator {
     this._submitButton = data.submitButtonSelector;
     this._inactiveButton = data.inactiveButtonClass;
     this._inputError = data.inputErrorClass;
+    this._errors = this._form.querySelectorAll(data.errorClass);
+    this.inputElement = document.querySelector(this._input);
   }
 
   _showError(input) {
@@ -54,6 +56,15 @@ export default class FormValidator {
         this._setButtonState();
       });
     });
+  }
+
+  resetValidityMassage = () => {
+    this._inputList.forEach((input) => {
+      input.classList.remove(this._inputError);
+    });
+    this._errors.forEach((error) => {
+      error.textContent = '';
+    })
   }
 
   enableValidation() {
