@@ -21,7 +21,7 @@ export default class Popup {
     }
   }
 
-  _closeByClick = (evt) => {
+  _closeByClick(evt) {
     const target = evt.target;
     if (target.classList.contains('popup_opened')) {
       this.closePopup();
