@@ -24,7 +24,7 @@ export default class FormValidator {
   _checkInvalidInput() {
     return this._inputList.some((input) => {
       return !input.validity.valid;
-    })
+    });
   }
 
   _checkInputValidity(input) {
@@ -62,9 +62,9 @@ export default class FormValidator {
       input.classList.remove(this._inputError);
     });
     this._errors.forEach((error) => {
-      error.textContent = '';
-    })
-  }
+      error.textContent = "";
+    });
+  };
 
   enableValidation() {
     this._setEventListener();
