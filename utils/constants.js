@@ -1,3 +1,9 @@
+import agra from "../images/card-images/Agra.jpg";
+import barcelona from "../images/card-images/Barcelona.jpg";
+import florence from "../images/card-images/Florence.jpg";
+import hiroshima from "../images/card-images/Hiroshima.jpg";
+import moscow from "../images/card-images/Moscow.jpg";
+import singapore from "../images/card-images/singapore.jpg";
 export {
   buttonEdit,
   buttonAdd,
@@ -8,33 +14,28 @@ export {
 // конфиг начального списка карточек
 const initialCards = [
   {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    name: "Агра",
+    link: agra,
   },
   {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+    name: "Барселона",
+    link: barcelona,
   },
   {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+    name: "Хиросима",
+    link: hiroshima,
   },
   {
-    name: "Ставрополь",
-    link:
-      "https://stv24.tv/wp-content/uploads/2019/12/11/8cc25a94f1fa7968b98fb26b6231b737.jpg",
+    name: "Флоренция",
+    link: florence,
   },
   {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+    name: "Москва",
+    link: moscow,
   },
   {
-    name: "Новочеркасск",
-    link: "https://foto-don.ru/photo/novocherkassk/platov_sobor0.jpg",
+    name: "Сингапур",
+    link: singapore,
   },
 ];
 
