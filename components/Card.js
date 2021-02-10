@@ -49,7 +49,7 @@ export default class Card {
     this._element
       .querySelector(".btn_type_delete")
       .addEventListener("click", (evt) => {
-        this._openPopupDelete();
+        this._openPopupDelete(evt);
       });
   }
 }

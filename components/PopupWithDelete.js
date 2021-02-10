@@ -6,13 +6,17 @@ export default class PopupWithDelete extends Popup {
     this._buttonDelete = this._popup.querySelector(".popup__button");
   }
 
-  setEventListeners = (evt) => {
+  setEventListeners = () => {
     super.setEventListeners();
-    //this._buttonDelete.addEventListener("click");
+    this._buttonDelete.addEventListener("click", () => {
+      this.evt.path[1].remove();
+      this.closePopup();
+    });
   };
 
-  openPopup = () => {
+  openPopup = (evt) => {
     super.openPopup();
+    this.evt = evt;
   };
 
   closePopup = () => {

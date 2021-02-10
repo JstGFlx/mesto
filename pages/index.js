@@ -11,11 +11,13 @@ import {
   listContainerElement,
   initialCards,
   validationConfig,
+  profileAvatar,
 } from "../utils/constants.js"; //импорт DOM элементов страницы
 import "./index.css";
 
 const validatorEdit = new FormValidator(validationConfig, "edit-profile"); //включение валидации формы редактирования профиля
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
+const validatorAvatar = new FormValidator(validationConfig, "change-avatar");
 //инициализация начального списка карточек
 const cardsList = new Section(
   {
@@ -58,6 +60,16 @@ const popupTypeAdd = new PopupWithForm(
   ".popup_type_add",
   validatorAdd.resetValidityMassage
 );
+
+const popupTypeAvatar = new PopupWithForm(
+  {
+    submitForm: (item) => {
+      profileAvatar.style.backgroundImage = `url(${item.link})`;
+    },
+  },
+  ".popup_type_avatar",
+  validatorAvatar.resetValidityMassage
+);
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage(".popup_type_img");
 
@@ -76,6 +88,7 @@ popupTypeEdit.setEventListeners();
 popupTypeAdd.setEventListeners();
 popupTypeImage.setEventListeners();
 popupTypeDelete.setEventListeners();
+popupTypeAvatar.setEventListeners();
 
 buttonEdit.addEventListener("click", () => {
   popupTypeEdit.setInitialInputsValues(usesInfo.getUserInfo());
@@ -86,4 +99,8 @@ buttonEdit.addEventListener("click", () => {
 buttonAdd.addEventListener("click", () => {
   validatorAdd.enableValidation();
   popupTypeAdd.openPopup();
+});
+profileAvatar.addEventListener("click", () => {
+  validatorAvatar.enableValidation();
+  popupTypeAvatar.openPopup();
 });

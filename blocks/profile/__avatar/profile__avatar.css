@@ -2,4 +2,27 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  position: relative;
+  background-image: url("../../../images/avatar.jpg");
+  background-size: cover;
+}
+
+.profile__avatar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url("../../../images/Pen.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.profile__avatar:hover::after {
+  opacity: 1;
 }
