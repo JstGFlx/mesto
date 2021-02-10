@@ -11,7 +11,7 @@
   line-height: 17px;
 }
 
-@media (max-width: 692px) {
+@media (max-width: 550px) {
   .popup__input {
     margin-top: 20px;
     font-size: 12px;

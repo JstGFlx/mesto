@@ -4,6 +4,7 @@ import Section from "../components/Section.js"; // импорт класса о�
 import PopupWithImage from "../components/PopupWithImage.js"; // импорт класса попапа увеличенной картинки
 import PopupWithForm from "../components/PopupWithForm.js"; // импорт класса поапа с формой
 import UserInfo from "../components/UserInfo.js"; // импорт класса управляющего отображением информации профиля
+import PopupWithDelete from "../components/PopupWithDelete.js";
 import {
   buttonEdit,
   buttonAdd,
@@ -20,7 +21,12 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, ".template", popupTypeImage.openPopup);
+      const card = new Card(
+        item,
+        ".template",
+        popupTypeImage.openPopup,
+        popupTypeDelete.openPopup
+      );
       cardsList.addItem(card.generateCard());
     },
   },
@@ -40,7 +46,12 @@ const popupTypeEdit = new PopupWithForm(
 const popupTypeAdd = new PopupWithForm(
   {
     submitForm: (item) => {
-      const card = new Card(item, ".template", popupTypeImage.openPopup);
+      const card = new Card(
+        item,
+        ".template",
+        popupTypeImage.openPopup,
+        popupTypeDelete.openPopup
+      );
       listContainerElement.prepend(card.generateCard());
     },
   },
@@ -49,6 +60,9 @@ const popupTypeAdd = new PopupWithForm(
 );
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage(".popup_type_img");
+
+const popupTypeDelete = new PopupWithDelete(".popup_type_delete");
+
 //инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({
   name: ".profile__name",
@@ -61,6 +75,7 @@ cardsList.renderItems();
 popupTypeEdit.setEventListeners();
 popupTypeAdd.setEventListeners();
 popupTypeImage.setEventListeners();
+popupTypeDelete.setEventListeners();
 
 buttonEdit.addEventListener("click", () => {
   popupTypeEdit.setInitialInputsValues(usesInfo.getUserInfo());

@@ -1,10 +1,11 @@
 // класс элемента карточки
 export default class Card {
-  constructor({ name, link }, template, showPopup) {
+  constructor({ name, link }, template, openPopupView, openPopupDelete) {
     this._title = name;
     this._image = link;
     this._template = document.querySelector(template);
-    this._showPopup = showPopup;
+    this._openPopupView = openPopupView;
+    this._openPopupDelete = openPopupDelete;
   }
 
   _getTemplate() {
@@ -38,7 +39,7 @@ export default class Card {
     this._element
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._showPopup(this._image, this._title);
+        this._openPopupView(this._image, this._title);
       });
     this._element
       .querySelector(".card__like")
@@ -48,7 +49,7 @@ export default class Card {
     this._element
       .querySelector(".btn_type_delete")
       .addEventListener("click", (evt) => {
-        this._deleteTheCard(evt);
+        this._openPopupDelete();
       });
   }
 }

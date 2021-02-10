@@ -1,0 +1,9 @@
+.btn_margin_l {
+  margin-top: 48px;
+}
+
+@media (max-width: 550px) {
+  .btn_margin_l {
+    margin-top: 36px;
+  }
+}
