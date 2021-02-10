@@ -5,13 +5,13 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .profile__about-me {
     margin: 7px 0 33px;
     font-size: 14px;

@@ -8,9 +8,9 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .profile {
     flex-direction: column;
     justify-content: center;
   }
-}  
+}

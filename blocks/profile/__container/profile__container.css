@@ -3,9 +3,8 @@
   align-items: center;
 }
 
-
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .profile__container {
     flex-direction: column;
   }
-}  
+}

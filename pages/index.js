@@ -5,6 +5,7 @@ import PopupWithImage from "../components/PopupWithImage.js"; // импорт к
 import PopupWithForm from "../components/PopupWithForm.js"; // импорт класса поапа с формой
 import UserInfo from "../components/UserInfo.js"; // импорт класса управляющего отображением информации профиля
 import PopupWithDelete from "../components/PopupWithDelete.js";
+import Api from "../components/Api.js";
 import {
   buttonEdit,
   buttonAdd,
@@ -18,6 +19,39 @@ import "./index.css";
 const validatorEdit = new FormValidator(validationConfig, "edit-profile"); //включение валидации формы редактирования профиля
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
 const validatorAvatar = new FormValidator(validationConfig, "change-avatar");
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20",
+  headers: {
+    authorization: "79accf8f-cc76-4033-84f9-2d1d81c30157",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((res) => {
+  const cardsList = new Section(
+    {
+      items: res,
+      renderer: (item) => {
+        const card = new Card(
+          item,
+          ".template",
+          popupTypeImage.openPopup,
+          popupTypeDelete.openPopup
+        );
+        cardsList.addItem(card.generateCard());
+      },
+    },
+    listContainerElement
+  );
+  cardsList.renderItems();
+});
+
+api.getUserInfo().then((res) => {
+  usesInfo.setUserInfo(res);
+  profileAvatar.style.backgroundImage = `url(${res.avatar})`;
+});
+
 //инициализация начального списка карточек
 const cardsList = new Section(
   {
@@ -78,11 +112,11 @@ const popupTypeDelete = new PopupWithDelete(".popup_type_delete");
 //инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({
   name: ".profile__name",
-  aboutMe: ".profile__about-me",
+  about: ".profile__about-me",
 });
 
 //отрисовка начального списка карточек
-cardsList.renderItems();
+//cardsList.renderItems();
 
 popupTypeEdit.setEventListeners();
 popupTypeAdd.setEventListeners();

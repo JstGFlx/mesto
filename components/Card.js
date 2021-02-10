@@ -1,11 +1,12 @@
 // класс элемента карточки
 export default class Card {
-  constructor({ name, link }, template, openPopupView, openPopupDelete) {
+  constructor({ name, link, likes }, template, openPopupView, openPopupDelete) {
     this._title = name;
     this._image = link;
     this._template = document.querySelector(template);
     this._openPopupView = openPopupView;
     this._openPopupDelete = openPopupDelete;
+    this._likes = likes;
   }
 
   _getTemplate() {
@@ -31,6 +32,9 @@ export default class Card {
     this._elementImage.src = this._image;
     this._elementImage.alt = this._title;
     this._element.querySelector(".card__name").textContent = this._title;
+    this._element.querySelector(
+      ".card__like-counter"
+    ).textContent = this._likes.length;
 
     return this._element;
   }
