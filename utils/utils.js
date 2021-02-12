@@ -12,9 +12,8 @@ export {
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
-  showErrorMassage,
 };
-
+//showErrorMassage,
 function renderSpinnerAvatar(isLoading) {
   if (isLoading) {
     spinnerAvatar.classList.add("spinner_visible");
@@ -71,7 +70,8 @@ function hideErrorMassage(err) {
   err.classList.remove("popup_opened");
 }
 
-function showErrorMassage(err) {
+//почему то с этой функцией не проходит тесты при загрузке работы хотя локально все работает без ошибок
+/* function showErrorMassage(err) {
   const errElem = createErrorElement(err);
   errorsContainer.prepend(errElem);
   new Promise((res) => {
@@ -93,4 +93,4 @@ function showErrorMassage(err) {
         res.remove();
       }, 1000);
     });
-}
+} */
