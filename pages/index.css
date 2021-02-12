@@ -10,6 +10,7 @@
 @import url("../blocks/profile/__name/profile__name.css");
 @import url("../blocks/profile/__about-me/profile__about-me.css");
 @import url("../blocks/spinner/spinner.css");
+@import url("../blocks/spinner/__element/spinner__element.css");
 @import url("../blocks/spinner/_visible/spinner_visible.css");
 @import url("../blocks/loader/loader.css");
 @import url("../blocks/loader/_size/loader_size_s.css");
