@@ -62,10 +62,10 @@ function showErrorMassage(err) {
     }, 0);
   })
     .then((res) => {
-      return new Promise((resault) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           hideErrorMassage(res);
-          resault(res);
+          resolve(res);
         }, 5000);
       });
     })
