@@ -10,6 +10,7 @@ import {
   renderLoading,
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
+  showErrorMassage,
 } from "../utils/utils.js";
 import Api from "../components/Api.js";
 import {
@@ -66,7 +67,7 @@ api
     cardsList.renderItems();
   })
   .catch((err) => {
-    console.log(err);
+    showErrorMassage(err);
   })
   .finally(() => {
     renderLoading(false, loaderCards);
@@ -79,7 +80,7 @@ api
     profileAvatar.style.backgroundImage = `url(${res.avatar})`;
   })
   .catch((err) => {
-    console.log(err);
+    showErrorMassage(err);
   })
   .finally(() => {
     renderLoading(false, loaderInfo);
@@ -109,7 +110,7 @@ const popupTypeAdd = new PopupWithForm(
           listContainerElement.prepend(card.generateCard());
         })
         .catch((err) => {
-          console.log(err);
+          showErrorMassage(err);
         })
         .finally(() => {
           renderLoadTextBtnAdd(false);
@@ -131,7 +132,7 @@ const popupTypeEdit = new PopupWithForm(
           usesInfo.setUserInfo(res);
         })
         .catch((err) => {
-          console.log(err)
+          showErrorMassage(err);
         })
         .finally(() => {
           renderLoadTextBtnEdit(false, btnSubmitEdit);
@@ -152,7 +153,7 @@ const popupTypeAvatar = new PopupWithForm(
           profileAvatar.style.backgroundImage = `url(${item.link})`;
         })
         .catch((err) => {
-          console.log(err)
+          showErrorMassage(err);
         })
         .finally(() => {
           popupTypeAvatar.closePopup();

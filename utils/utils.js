@@ -2,6 +2,8 @@ import {
   spinnerAvatar,
   btnSubmitAdd,
   btnSubmitDelete,
+  errorTemplate,
+  errorsContainer,
 } from "../utils/constants.js";
 
 export {
@@ -10,6 +12,7 @@ export {
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
+  showErrorMassage,
 };
 
 function renderSpinnerAvatar(isLoading) {
@@ -50,4 +53,44 @@ function renderLoadTextBtnDelete(isLoading) {
   } else {
     btnSubmitDelete.textContent = "Да";
   }
+}
+
+function getTemplateError() {
+  return errorTemplate.content.querySelector(".error").cloneNode(true);
+}
+
+function createErrorElement(err) {
+  const errorElement = getTemplateError();
+  errorElement.querySelector(
+    ".error__massage"
+  ).textContent = `${err}. Что-то пошло не так :(`;
+  return errorElement;
+}
+
+function hideErrorMassage(err) {
+  err.classList.remove("popup_opened");
+}
+
+function showErrorMassage(err) {
+  const errElem = createErrorElement(err);
+  errorsContainer.prepend(errElem);
+  new Promise((res) => {
+    setTimeout(() => {
+      errElem.classList.add("popup_opened");
+      res(errElem);
+    }, 0);
+  })
+    .then((res) => {
+      return new Promise((resault) => {
+        setTimeout(() => {
+          hideErrorMassage(res);
+          resault(res);
+        }, 5000);
+      });
+    })
+    .then((res) => {
+      setTimeout(() => {
+        res.remove();
+      }, 1000);
+    });
 }

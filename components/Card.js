@@ -1,4 +1,5 @@
 // класс элемента карточки
+import { showErrorMassage } from "../utils/utils.js";
 export default class Card {
   constructor(
     { name, link, likes, _id, owner },
@@ -47,7 +48,7 @@ export default class Card {
           this._likes.splice(myLike, 1);
         })
         .catch((err) => {
-          console.log(err)
+          showErrorMassage(err);
         });
     } else {
       this._putLikeCard(id)
@@ -57,7 +58,7 @@ export default class Card {
           this._likes.push({ _id: this._myId });
         })
         .catch((err) => {
-          console.log(err)
+          showErrorMassage(err);
         });
     }
   }

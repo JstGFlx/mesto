@@ -1,5 +1,6 @@
 import Popup from "./Popup.js";
-import { renderLoadTextBtnDelete } from "../utils/utils.js";
+import { renderLoadTextBtnDelete, showErrorMassage } from "../utils/utils.js";
+
 export default class PopupWithDelete extends Popup {
   constructor(popup, handleDeleteCard) {
     super(popup);
@@ -11,7 +12,7 @@ export default class PopupWithDelete extends Popup {
     renderLoadTextBtnDelete(true);
     this._handleDeleteCard(this._currentCard._id)
       .catch((err) => {
-        console.log(err);
+        showErrorMassage(err);
       })
       .finally(() => {
         this._currentCard._element.remove();
