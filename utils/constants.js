@@ -4,9 +4,6 @@ export {
   listContainerElement,
   validationConfig,
   profileAvatar,
-  loaderInfo,
-  spinnerAvatar,
-  loaderCards,
   btnSubmitEdit,
   btnSubmitAdd,
   btnSubmitDelete,
@@ -29,9 +26,6 @@ const buttonEdit = document.querySelector(".btn_type_edit"); // кнопка р�
 const buttonAdd = document.querySelector(".btn_type_add"); // кнопка добавить карточку
 const listContainerElement = document.querySelector(".cards"); // контейнер со всеми карточками
 const profileAvatar = document.querySelector(".profile__avatar");
-const loaderInfo = document.querySelector(".loader_type_profile");
-const loaderCards = document.querySelector(".loader_type_cards");
-const spinnerAvatar = document.querySelector(".spinner");
 const btnSubmitEdit = document.querySelector(".popup__button_type_edit");
 const btnSubmitEditAvatar = document.querySelector(
   ".popup__button_type_edit-avatar"

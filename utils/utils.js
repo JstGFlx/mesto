@@ -1,5 +1,4 @@
 import {
-  spinnerAvatar,
   btnSubmitAdd,
   btnSubmitDelete,
   errorTemplate,
@@ -7,29 +6,11 @@ import {
 } from "../utils/constants.js";
 
 export {
-  renderSpinnerAvatar,
-  renderLoading,
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
   showErrorMassage,
 };
-
-function renderSpinnerAvatar(isLoading) {
-  if (isLoading) {
-    spinnerAvatar.classList.add("spinner_visible");
-  } else {
-    spinnerAvatar.classList.remove("spinner_visible");
-  }
-}
-
-function renderLoading(isLoading, loader) {
-  if (isLoading) {
-    loader.classList.add("loader_visible");
-  } else {
-    loader.classList.remove("loader_visible");
-  }
-}
 
 function renderLoadTextBtnEdit(isLoading, btn) {
   if (isLoading) {

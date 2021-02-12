@@ -1,17 +1,10 @@
 import {
-  renderSpinnerAvatar,
-  renderLoading,
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
 } from "../utils/utils.js";
 
-import {
-  btnSubmitEdit,
-  btnSubmitEditAvatar,
-  loaderInfo,
-  loaderCards,
-} from "../utils/constants.js";
+import { btnSubmitEdit, btnSubmitEditAvatar } from "../utils/constants.js";
 
 export default class Api {
   constructor({ baseUrl, headers }) {
@@ -21,7 +14,6 @@ export default class Api {
   }
 
   getInitialCards() {
-    renderLoading(true, loaderCards);
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: this._authorization,
@@ -35,8 +27,6 @@ export default class Api {
   }
 
   getUserInfo() {
-    renderSpinnerAvatar(true);
-    renderLoading(true, loaderInfo);
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._authorization,
@@ -91,7 +81,6 @@ export default class Api {
 
   patchAvatar = (link) => {
     renderLoadTextBtnEdit(true, btnSubmitEditAvatar);
-    renderSpinnerAvatar(true);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
