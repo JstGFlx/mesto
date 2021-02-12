@@ -6,8 +6,6 @@ import PopupWithForm from "../components/PopupWithForm.js"; // импорт кл
 import UserInfo from "../components/UserInfo.js"; // импорт класса управляющего отображением информации профиля
 import PopupWithDelete from "../components/PopupWithDelete.js";
 import {
-  renderSpinnerAvatar,
-  renderLoading,
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   showErrorMassage,
@@ -21,8 +19,6 @@ import {
   profileAvatar,
   btnSubmitEdit,
   btnSubmitEditAvatar,
-  loaderInfo,
-  loaderCards,
 } from "../utils/constants.js"; //импорт DOM элементов страницы
 import "./index.css";
 
@@ -69,9 +65,7 @@ api
   .catch((err) => {
     showErrorMassage(err);
   })
-  .finally(() => {
-    renderLoading(false, loaderCards);
-  });
+  .finally(() => {});
 //получение и установка начальной информации пользователя
 api
   .getUserInfo()
@@ -82,10 +76,7 @@ api
   .catch((err) => {
     showErrorMassage(err);
   })
-  .finally(() => {
-    renderLoading(false, loaderInfo);
-    renderSpinnerAvatar(false);
-  });
+  .finally(() => {});
 
 const popupTypeAdd = new PopupWithForm(
   {
@@ -158,7 +149,6 @@ const popupTypeAvatar = new PopupWithForm(
         .finally(() => {
           popupTypeAvatar.closePopup();
           renderLoadTextBtnEdit(false, btnSubmitEditAvatar);
-          renderSpinnerAvatar(false);
         });
     },
   },

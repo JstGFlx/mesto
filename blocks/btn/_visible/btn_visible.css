@@ -1,3 +1,3 @@
 .btn_visible {
-  display: block;
+  display: block !important;
 }
