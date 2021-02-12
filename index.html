@@ -15,8 +15,32 @@
     <main>
       <section class="profile">
         <div class="profile__container">
-          <div class="profile__avatar"></div>
+          <div class="profile__avatar">
+            <div class="spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
           <div class="profile__info">
+            <div class="loader loader_type_profile">
+              <p class="loader__item loader_size_s">l</p>
+              <p class="loader__item loader_size_s">o</p>
+              <p class="loader__item loader_size_s">a</p>
+              <p class="loader__item loader_size_s">d</p>
+              <p class="loader__item loader_size_s">i</p>
+              <p class="loader__item loader_size_s">n</p>
+              <p class="loader__item loader_size_s">g</p>
+            </div>
             <h1 class="profile__name"></h1>
             <button class="btn btn_type_edit" type="button" aria-label="изменить"></button>
             <p class="profile__about-me"></p>
@@ -24,7 +48,19 @@
         </div>
         <button class="btn btn_type_add" type="button" aria-label="добавить"></button>
       </section>
-      <section class="cards"></section>
+      <div class="center">
+        <div class="loader loader_type_cards">
+          <p class="loader__item loader_size_l">l</p>
+          <p class="loader__item loader_size_l">o</p>
+          <p class="loader__item loader_size_l">a</p>
+          <p class="loader__item loader_size_l">d</p>
+          <p class="loader__item loader_size_l">i</p>
+          <p class="loader__item loader_size_l">n</p>
+          <p class="loader__item loader_size_l">g</p>
+        </div>
+      </div>
+      <section class="cards">
+      </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -50,10 +86,10 @@
           <input class="popup__input popup__input_text_name" name="name" id="name-profile" type="text" placeholder="Имя"
             minlength="2" maxlength="40" required />
           <span class="popup__error" id="name-profile-error"></span>
-          <input class="popup__input popup__input_text_about-me" name="aboutMe" id="about-profile" type="text"
+          <input class="popup__input popup__input_text_about-me" name="about" id="about-profile" type="text"
             placeholder="О себе" minlength="2" maxlength="200" required novalidate />
           <span class="popup__error" id="about-profile-error"></span>
-          <button class="btn btn_margin_l popup__button" type="submit" aria-label="сохранить">
+          <button class="btn btn_margin_l popup__button popup__button_type_edit" type="submit" aria-label="сохранить">
             Сохранить
           </button>
         </form>
@@ -70,7 +106,7 @@
           <input class="popup__input popup__input_text_link" name="link" id="url-card" type="url"
             placeholder="Ссылка на картинку" required />
           <span class="popup__error" id="url-card-error"></span>
-          <button class="btn btn_margin_l popup__button" type="submit" aria-label="сохранить">
+          <button class="btn btn_margin_l popup__button popup__button_type_add" type="submit" aria-label="сохранить">
             Создать
           </button>
         </form>
@@ -84,7 +120,8 @@
           <input class="popup__input popup__input_text_link" name="link" id="url-avatar" type="url"
             placeholder="Ссылка на картинку" required />
           <span class="popup__error" id="url-avatar-error"></span>
-          <button class="btn btn_margin_l popup__button" type="submit" aria-label="сохранить">
+          <button class="btn btn_margin_l popup__button popup__button_type_edit-avatar" type="submit"
+            aria-label="сохранить">
             Сохранить
           </button>
         </form>
@@ -102,10 +139,17 @@
     <div class="popup__container">
       <button class="btn btn_type_close" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Вы уверены?</h2>
-      <button class="btn btn_margin_s popup__button" type="button" aria-label="сохранить">
+      <button class="btn btn_margin_s popup__button popup__button_type_delete" type="button" aria-label="сохранить">
         Да
       </button>
     </div>
+  </div>
+  <div class="errors">
+    <template class="error__template">
+      <div class="error">
+        <p class="error__massage"></p>
+      </div>
+    </template>
   </div>
 </body>
 

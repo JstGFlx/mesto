@@ -5,14 +5,24 @@ import PopupWithImage from "../components/PopupWithImage.js"; // импорт к
 import PopupWithForm from "../components/PopupWithForm.js"; // импорт класса поапа с формой
 import UserInfo from "../components/UserInfo.js"; // импорт класса управляющего отображением информации профиля
 import PopupWithDelete from "../components/PopupWithDelete.js";
+import {
+  renderSpinnerAvatar,
+  renderLoading,
+  renderLoadTextBtnEdit,
+  renderLoadTextBtnAdd,
+  showErrorMassage,
+} from "../utils/utils.js";
 import Api from "../components/Api.js";
 import {
   buttonEdit,
   buttonAdd,
   listContainerElement,
-  initialCards,
   validationConfig,
   profileAvatar,
+  btnSubmitEdit,
+  btnSubmitEditAvatar,
+  loaderInfo,
+  loaderCards,
 } from "../utils/constants.js"; //импорт DOM элементов страницы
 import "./index.css";
 
@@ -27,78 +37,129 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-api.getInitialCards().then((res) => {
-  const cardsList = new Section(
-    {
-      items: res,
-      renderer: (item) => {
-        const card = new Card(
-          item,
-          ".template",
-          popupTypeImage.openPopup,
-          popupTypeDelete.openPopup
-        );
-        cardsList.addItem(card.generateCard());
-      },
-    },
-    listContainerElement
-  );
-  cardsList.renderItems();
-});
-
-api.getUserInfo().then((res) => {
-  usesInfo.setUserInfo(res);
-  profileAvatar.style.backgroundImage = `url(${res.avatar})`;
-});
-
 //инициализация начального списка карточек
-const cardsList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(
-        item,
-        ".template",
-        popupTypeImage.openPopup,
-        popupTypeDelete.openPopup
-      );
-      cardsList.addItem(card.generateCard());
-    },
-  },
-  listContainerElement
-);
-//инициализация попапа редактирования профиля
-const popupTypeEdit = new PopupWithForm(
-  {
-    submitForm: (item) => {
-      usesInfo.setUserInfo(item);
-    },
-  },
-  ".popup_type_edit",
-  validatorEdit.resetValidityMassage
-);
-//инициализация попапа добавления новой карточки
+api
+  .getInitialCards()
+  .then((res) => {
+    const cardsList = new Section(
+      {
+        items: res,
+        renderer: (item) => {
+          const card = new Card(
+            item,
+            ".template",
+            "8ab59052478cb887db10ead2",
+            popupTypeImage.openPopup,
+            popupTypeDelete.openPopup,
+            api.putLikeCard,
+            api.deleteLike,
+            {
+              handleDeleteClick: () => {
+                popupTypeDelete.openPopup(card);
+              },
+            }
+          );
+          cardsList.addItem(card.generateCard());
+        },
+      },
+      listContainerElement
+    );
+    cardsList.renderItems();
+  })
+  .catch((err) => {
+    showErrorMassage(err);
+  })
+  .finally(() => {
+    renderLoading(false, loaderCards);
+  });
+//получение и установка начальной информации пользователя
+api
+  .getUserInfo()
+  .then((res) => {
+    usesInfo.setUserInfo(res);
+    profileAvatar.style.backgroundImage = `url(${res.avatar})`;
+  })
+  .catch((err) => {
+    showErrorMassage(err);
+  })
+  .finally(() => {
+    renderLoading(false, loaderInfo);
+    renderSpinnerAvatar(false);
+  });
+
 const popupTypeAdd = new PopupWithForm(
   {
     submitForm: (item) => {
-      const card = new Card(
-        item,
-        ".template",
-        popupTypeImage.openPopup,
-        popupTypeDelete.openPopup
-      );
-      listContainerElement.prepend(card.generateCard());
+      api
+        .postNewCard(item)
+        .then((res) => {
+          const card = new Card(
+            res,
+            ".template",
+            "8ab59052478cb887db10ead2",
+            popupTypeImage.openPopup,
+            popupTypeDelete.openPopup,
+            api.putLikeCard,
+            api.deleteLike,
+            {
+              handleDeleteClick: () => {
+                popupTypeDelete.openPopup(card);
+              },
+            }
+          );
+          listContainerElement.prepend(card.generateCard());
+        })
+        .catch((err) => {
+          showErrorMassage(err);
+        })
+        .finally(() => {
+          renderLoadTextBtnAdd(false);
+          popupTypeAdd.closePopup();
+        });
     },
   },
   ".popup_type_add",
   validatorAdd.resetValidityMassage
 );
 
+//инициализация попапа редактирования профиля
+const popupTypeEdit = new PopupWithForm(
+  {
+    submitForm: (item) => {
+      api
+        .pathUserInfo(item)
+        .then((res) => {
+          usesInfo.setUserInfo(res);
+        })
+        .catch((err) => {
+          showErrorMassage(err);
+        })
+        .finally(() => {
+          renderLoadTextBtnEdit(false, btnSubmitEdit);
+          popupTypeEdit.closePopup();
+        });
+    },
+  },
+  ".popup_type_edit",
+  validatorEdit.resetValidityMassage
+);
+//инициализация попапа добавления новой карточки
 const popupTypeAvatar = new PopupWithForm(
   {
     submitForm: (item) => {
-      profileAvatar.style.backgroundImage = `url(${item.link})`;
+      api
+        .patchAvatar(item.link)
+        .then((res) => {
+          profileAvatar.style.backgroundImage = `url(${item.link})`;
+        })
+        .catch((err) => {
+          showErrorMassage(err);
+        })
+        .finally(() => {
+          popupTypeAvatar.closePopup();
+          renderLoadTextBtnEdit(false, btnSubmitEditAvatar);
+          renderSpinnerAvatar(false);
+        });
     },
   },
   ".popup_type_avatar",
@@ -107,16 +168,16 @@ const popupTypeAvatar = new PopupWithForm(
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage(".popup_type_img");
 
-const popupTypeDelete = new PopupWithDelete(".popup_type_delete");
+const popupTypeDelete = new PopupWithDelete(
+  ".popup_type_delete",
+  api.deleteCard
+);
 
 //инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({
   name: ".profile__name",
   about: ".profile__about-me",
 });
-
-//отрисовка начального списка карточек
-//cardsList.renderItems();
 
 popupTypeEdit.setEventListeners();
 popupTypeAdd.setEventListeners();

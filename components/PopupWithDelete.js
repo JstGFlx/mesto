@@ -1,22 +1,36 @@
 import Popup from "./Popup.js";
+import { renderLoadTextBtnDelete, showErrorMassage } from "../utils/utils.js";
 
 export default class PopupWithDelete extends Popup {
-  constructor(popup) {
+  constructor(popup, handleDeleteCard) {
     super(popup);
+    this._handleDeleteCard = handleDeleteCard;
     this._buttonDelete = this._popup.querySelector(".popup__button");
+  }
+
+  _deleteCard() {
+    renderLoadTextBtnDelete(true);
+    this._handleDeleteCard(this._currentCard._id)
+      .catch((err) => {
+        showErrorMassage(err);
+      })
+      .finally(() => {
+        this._currentCard._element.remove();
+        renderLoadTextBtnDelete(false);
+        this.closePopup();
+      });
   }
 
   setEventListeners = () => {
     super.setEventListeners();
     this._buttonDelete.addEventListener("click", () => {
-      this._evt.path[1].remove();
-      this.closePopup();
+      this._deleteCard();
     });
   };
 
-  openPopup = (evt) => {
+  openPopup = (card) => {
     super.openPopup();
-    this._evt = evt;
+    this._currentCard = card;
   };
 
   closePopup = () => {

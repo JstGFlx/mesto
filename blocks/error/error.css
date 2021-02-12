@@ -1,0 +1,11 @@
+.error {
+  padding: 5px;
+  margin: 20px;
+  background-color: rgba(233, 87, 87, 0.801);
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}

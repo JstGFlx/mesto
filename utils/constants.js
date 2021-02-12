@@ -1,44 +1,19 @@
-import agra from "../images/card-images/Agra.jpg";
-import barcelona from "../images/card-images/Barcelona.jpg";
-import florence from "../images/card-images/Florence.jpg";
-import hiroshima from "../images/card-images/Hiroshima.jpg";
-import moscow from "../images/card-images/Moscow.jpg";
-import singapore from "../images/card-images/singapore.jpg";
 export {
   buttonEdit,
   buttonAdd,
   listContainerElement,
-  initialCards,
   validationConfig,
   profileAvatar,
+  loaderInfo,
+  spinnerAvatar,
+  loaderCards,
+  btnSubmitEdit,
+  btnSubmitAdd,
+  btnSubmitDelete,
+  btnSubmitEditAvatar,
+  errorTemplate,
+  errorsContainer,
 };
-// конфиг начального списка карточек
-const initialCards = [
-  {
-    name: "Агра",
-    link: agra,
-  },
-  {
-    name: "Барселона",
-    link: barcelona,
-  },
-  {
-    name: "Хиросима",
-    link: hiroshima,
-  },
-  {
-    name: "Флоренция",
-    link: florence,
-  },
-  {
-    name: "Москва",
-    link: moscow,
-  },
-  {
-    name: "Сингапур",
-    link: singapore,
-  },
-];
 
 // конфиг для класса валидации
 const validationConfig = {
@@ -54,3 +29,14 @@ const buttonEdit = document.querySelector(".btn_type_edit"); // кнопка р�
 const buttonAdd = document.querySelector(".btn_type_add"); // кнопка добавить карточку
 const listContainerElement = document.querySelector(".cards"); // контейнер со всеми карточками
 const profileAvatar = document.querySelector(".profile__avatar");
+const loaderInfo = document.querySelector(".loader_type_profile");
+const loaderCards = document.querySelector(".loader_type_cards");
+const spinnerAvatar = document.querySelector(".spinner");
+const btnSubmitEdit = document.querySelector(".popup__button_type_edit");
+const btnSubmitEditAvatar = document.querySelector(
+  ".popup__button_type_edit-avatar"
+);
+const btnSubmitAdd = document.querySelector(".popup__button_type_add");
+const btnSubmitDelete = document.querySelector(".popup__button_type_delete");
+const errorTemplate = document.querySelector(".error__template");
+const errorsContainer = document.querySelector(".errors");
