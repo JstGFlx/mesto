@@ -1,4 +1,4 @@
-.spinner__element {
+/* .spinner__element {
   transform-origin: 40px 40px;
   animation: spinner 1.2s linear infinite;
 }
@@ -60,4 +60,4 @@
 .spinner__element:nth-child(12) {
   transform: rotate(330deg);
   animation-delay: 0s;
-}
+} */
