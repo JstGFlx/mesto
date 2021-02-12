@@ -1,11 +1,5 @@
-:root {
-  --effect: hover 1s linear infinite;
-}
-* {
-  margin: 0;
-}
-
 .loader__item {
+  margin: 0;
   display: inline-block;
   text-transform: uppercase;
   text-align: center;
@@ -17,31 +11,31 @@
 }
 
 .loader__item:nth-child(1) {
-  animation: var(--effect);
+  animation: hover 1s linear infinite;
 }
 
 .loader__item:nth-child(2) {
-  animation: var(--effect) 0.125s;
+  animation: hover 1s linear infinite 0.125s;
 }
 
 .loader__item:nth-child(3) {
-  animation: var(--effect) 0.25s;
+  animation: hover 1s linear infinite 0.25s;
 }
 
 .loader__item:nth-child(4) {
-  animation: var(--effect) 0.375s;
+  animation: hover 1s linear infinite 0.375s;
 }
 
 .loader__item:nth-child(5) {
-  animation: var(--effect) 0.5s;
+  animation: hover 1s linear infinite 0.5s;
 }
 
 .loader__item:nth-child(6) {
-  animation: var(--effect) 0.675s;
+  animation: hover 1s linear infinite 0.675s;
 }
 
 .loader__item:nth-child(7) {
-  animation: var(--effect) 0.75s;
+  animation: hover 1s linear infinite 0.75s;
 }
 
 @keyframes hover {
