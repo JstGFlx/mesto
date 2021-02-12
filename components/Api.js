@@ -1,16 +1,20 @@
-import {
-  renderLoadTextBtnEdit,
-  renderLoadTextBtnAdd,
-  renderLoadTextBtnDelete,
-} from "../utils/utils.js";
-
-import { btnSubmitEdit, btnSubmitEditAvatar } from "../utils/constants.js";
-
 export default class Api {
-  constructor({ baseUrl, headers }) {
+  constructor(
+    { baseUrl, headers },
+    renderLoadTextBtnEdit,
+    renderLoadTextBtnAdd,
+    renderLoadTextBtnDelete,
+    btnSubmitEdit,
+    btnSubmitEditAvatar
+  ) {
     this._baseUrl = baseUrl;
     this._authorization = headers.authorization;
     this._contentType = headers["Content-Type"];
+    this._renderLoadTextBtnEdit = renderLoadTextBtnEdit;
+    this._renderLoadTextBtnAdd = renderLoadTextBtnAdd;
+    this._renderLoadTextBtnDelete = renderLoadTextBtnDelete;
+    this._btnSubmitEdit = btnSubmitEdit;
+    this._btnSubmitEditAvatar = btnSubmitEditAvatar;
   }
 
   getInitialCards() {
@@ -40,7 +44,7 @@ export default class Api {
   }
 
   pathUserInfo({ name, about }) {
-    renderLoadTextBtnEdit(true, btnSubmitEdit);
+    this._renderLoadTextBtnEdit(true, this._btnSubmitEdit);
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -60,7 +64,7 @@ export default class Api {
   }
 
   postNewCard({ name, link }) {
-    renderLoadTextBtnAdd(true);
+    this._renderLoadTextBtnAdd(true);
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
@@ -80,7 +84,7 @@ export default class Api {
   }
 
   patchAvatar = (link) => {
-    renderLoadTextBtnEdit(true, btnSubmitEditAvatar);
+    this._renderLoadTextBtnEdit(true, this._btnSubmitEditAvatar);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -92,14 +96,14 @@ export default class Api {
       }),
     }).then((res) => {
       if (res.ok) {
-        return res;
+        return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   };
 
   deleteCard = (id) => {
-    renderLoadTextBtnDelete(true);
+    this._renderLoadTextBtnDelete(true);
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: {
@@ -121,7 +125,7 @@ export default class Api {
       },
     }).then((res) => {
       if (res.ok) {
-        return res;
+        return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });
@@ -135,7 +139,7 @@ export default class Api {
       },
     }).then((res) => {
       if (res.ok) {
-        return res;
+        return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });

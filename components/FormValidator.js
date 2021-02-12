@@ -7,6 +7,8 @@ export default class FormValidator {
     this._inactiveButton = data.inactiveButtonClass;
     this._inputError = data.inputErrorClass;
     this._errors = this._form.querySelectorAll(data.errorClass);
+    this._inputList = [...this._form.querySelectorAll(this._input)];
+    this._button = this._form.querySelector(this._submitButton);
   }
 
   _showError(input) {
@@ -35,7 +37,7 @@ export default class FormValidator {
     }
   }
 
-  _setButtonState() {
+  setButtonState = () => {
     if (!this._checkInvalidInput()) {
       this._button.classList.remove(this._inactiveButton);
       this._button.disabled = false;
@@ -43,17 +45,20 @@ export default class FormValidator {
       this._button.classList.add(this._inactiveButton);
       this._button.disabled = true;
     }
-  }
+  };
 
   _setEventListener() {
-    this._inputList = [...this._form.querySelectorAll(this._input)];
-    this._button = this._form.querySelector(this._submitButton);
-
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
-        this._setButtonState();
+        this.setButtonState();
       });
+    });
+  }
+
+  reseteInputsValues() {
+    this._inputList.forEach((input) => {
+      input.value = "";
     });
   }
 
@@ -68,6 +73,6 @@ export default class FormValidator {
 
   enableValidation() {
     this._setEventListener();
-    this._setButtonState();
+    this.setButtonState();
   }
 }

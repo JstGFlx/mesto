@@ -1,22 +1,28 @@
 import Popup from "./Popup.js";
-import { renderLoadTextBtnDelete, showErrorMassage } from "../utils/utils.js";
 
 export default class PopupWithDelete extends Popup {
-  constructor(popup, handleDeleteCard) {
+  constructor(
+    popup,
+    handleDeleteCard,
+    renderLoadTextBtnDelete,
+    showErrorMassage
+  ) {
     super(popup);
     this._handleDeleteCard = handleDeleteCard;
     this._buttonDelete = this._popup.querySelector(".popup__button");
+    this._renderLoadTextBtnDelete = renderLoadTextBtnDelete;
+    this._showErrorMassage = showErrorMassage;
   }
 
   _deleteCard() {
-    renderLoadTextBtnDelete(true);
-    this._handleDeleteCard(this._currentCard._id)
+    this._renderLoadTextBtnDelete(true);
+    this._handleDeleteCard(this._id)
       .catch((err) => {
-        showErrorMassage(err);
+        this._showErrorMassage(err);
       })
       .finally(() => {
-        this._currentCard._element.remove();
-        renderLoadTextBtnDelete(false);
+        this._renderLoadTextBtnDelete(false);
+        this._card.remove();
         this.closePopup();
       });
   }
@@ -28,12 +34,9 @@ export default class PopupWithDelete extends Popup {
     });
   };
 
-  openPopup = (card) => {
+  openPopup = (card, id) => {
     super.openPopup();
-    this._currentCard = card;
-  };
-
-  closePopup = () => {
-    super.closePopup();
+    this._card = card;
+    this._id = id;
   };
 }
