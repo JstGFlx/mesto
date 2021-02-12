@@ -28,18 +28,20 @@ const validatorEdit = new FormValidator(validationConfig, "edit-profile"); //в�
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
 const validatorAvatar = new FormValidator(validationConfig, "change-avatar");
 
-const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20",
-  headers: {
-    authorization: "79accf8f-cc76-4033-84f9-2d1d81c30157",
-    "Content-Type": "application/json",
+const api = new Api(
+  {
+    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20",
+    headers: {
+      authorization: "79accf8f-cc76-4033-84f9-2d1d81c30157",
+      "Content-Type": "application/json",
+    },
   },
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
   btnSubmitEdit,
-  btnSubmitEditAvatar,
-});
+  btnSubmitEditAvatar
+);
 
 const cardsList = new Section(
   {
