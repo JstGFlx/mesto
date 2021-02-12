@@ -92,7 +92,7 @@ export default class Api {
       }),
     }).then((res) => {
       if (res.ok) {
-        return res;
+        return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });
@@ -121,7 +121,7 @@ export default class Api {
       },
     }).then((res) => {
       if (res.ok) {
-        return res;
+        return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });
@@ -135,7 +135,7 @@ export default class Api {
       },
     }).then((res) => {
       if (res.ok) {
-        return res;
+        return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
     });

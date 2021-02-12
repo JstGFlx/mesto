@@ -9,18 +9,20 @@ import {
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   showErrorMassage,
+  renderLoadTextBtnDelete,
 } from "../utils/utils.js";
 import Api from "../components/Api.js";
 import {
   buttonEdit,
   buttonAdd,
-  listContainerElement,
   validationConfig,
   profileAvatar,
   btnSubmitEdit,
   btnSubmitEditAvatar,
 } from "../utils/constants.js"; //импорт DOM элементов страницы
 import "./index.css";
+
+let userId;
 
 const validatorEdit = new FormValidator(validationConfig, "edit-profile"); //включение валидации формы редактирования профиля
 const validatorAdd = new FormValidator(validationConfig, "add-new-card"); // включение валидации формы добавления новой карточки
@@ -33,50 +35,35 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+
+const cardsList = new Section(
+  {
+    renderer: (item) => {
+      const card = createCard(item);
+      cardsList.appendItem(card.generateCard());
+    },
+  },
+  ".cards"
+);
 //инициализация начального списка карточек
 api
   .getInitialCards()
   .then((res) => {
-    const cardsList = new Section(
-      {
-        items: res,
-        renderer: (item) => {
-          const card = new Card(
-            item,
-            ".template",
-            "8ab59052478cb887db10ead2",
-            popupTypeImage.openPopup,
-            popupTypeDelete.openPopup,
-            api.putLikeCard,
-            api.deleteLike,
-            {
-              handleDeleteClick: () => {
-                popupTypeDelete.openPopup(card);
-              },
-            }
-          );
-          cardsList.addItem(card.generateCard());
-        },
-      },
-      listContainerElement
-    );
-    cardsList.renderItems();
+    cardsList.renderItems(res);
   })
   .catch((err) => {
     showErrorMassage(err);
-  })
-  .finally(() => {});
+  });
 //получение и установка начальной информации пользователя
 api
   .getUserInfo()
   .then((res) => {
+    userId = res._id;
     usesInfo.setUserInfo(res);
-    profileAvatar.style.backgroundImage = `url(${res.avatar})`;
   })
   .catch((err) => {
     showErrorMassage(err);
-  })
-  .finally(() => {});
+  });
 
 const popupTypeAdd = new PopupWithForm(
   {
@@ -84,21 +71,8 @@ const popupTypeAdd = new PopupWithForm(
       api
         .postNewCard(item)
         .then((res) => {
-          const card = new Card(
-            res,
-            ".template",
-            "8ab59052478cb887db10ead2",
-            popupTypeImage.openPopup,
-            popupTypeDelete.openPopup,
-            api.putLikeCard,
-            api.deleteLike,
-            {
-              handleDeleteClick: () => {
-                popupTypeDelete.openPopup(card);
-              },
-            }
-          );
-          listContainerElement.prepend(card.generateCard());
+          const card = createCard(res);
+          cardsList.prependItem(card.generateCard());
         })
         .catch((err) => {
           showErrorMassage(err);
@@ -112,6 +86,19 @@ const popupTypeAdd = new PopupWithForm(
   ".popup_type_add",
   validatorAdd.resetValidityMassage
 );
+
+function createCard(data) {
+  return new Card(
+    data,
+    ".template",
+    userId,
+    popupTypeImage.openPopup,
+    popupTypeDelete.openPopup,
+    api.putLikeCard,
+    api.deleteLike,
+    showErrorMassage
+  );
+}
 
 //инициализация попапа редактирования профиля
 const popupTypeEdit = new PopupWithForm(
@@ -141,7 +128,7 @@ const popupTypeAvatar = new PopupWithForm(
       api
         .patchAvatar(item.link)
         .then((res) => {
-          profileAvatar.style.backgroundImage = `url(${item.link})`;
+          usesInfo.setUserInfo(res);
         })
         .catch((err) => {
           showErrorMassage(err);
@@ -160,13 +147,16 @@ const popupTypeImage = new PopupWithImage(".popup_type_img");
 
 const popupTypeDelete = new PopupWithDelete(
   ".popup_type_delete",
-  api.deleteCard
+  api.deleteCard,
+  renderLoadTextBtnDelete,
+  showErrorMassage
 );
 
 //инициализация управления инфорацией профиля
 const usesInfo = new UserInfo({
   name: ".profile__name",
   about: ".profile__about-me",
+  avatar: ".profile__avatar",
 });
 
 popupTypeEdit.setEventListeners();
@@ -175,17 +165,26 @@ popupTypeImage.setEventListeners();
 popupTypeDelete.setEventListeners();
 popupTypeAvatar.setEventListeners();
 
+validatorEdit.enableValidation();
+validatorAdd.enableValidation();
+validatorAvatar.enableValidation();
+
 buttonEdit.addEventListener("click", () => {
   popupTypeEdit.setInitialInputsValues(usesInfo.getUserInfo());
-  validatorEdit.enableValidation();
+  validatorEdit.resetValidityMassage();
+  validatorEdit.setButtonState();
   popupTypeEdit.openPopup();
 });
 
 buttonAdd.addEventListener("click", () => {
-  validatorAdd.enableValidation();
+  validatorAdd.resetValidityMassage();
+  validatorAdd.reseteInputsValues();
+  validatorAdd.setButtonState();
   popupTypeAdd.openPopup();
 });
 profileAvatar.addEventListener("click", () => {
-  validatorAvatar.enableValidation();
+  validatorAvatar.reseteInputsValues();
+  validatorAvatar.resetValidityMassage();
+  validatorAvatar.setButtonState();
   popupTypeAvatar.openPopup();
 });

@@ -9,10 +9,10 @@ export default class Popup {
     document.addEventListener("keydown", this._closeByEscape);
   }
 
-  closePopup() {
+  closePopup = () => {
     this._popup.classList.remove("popup_opened");
     document.removeEventListener("keydown", this._closeByEscape);
-  }
+  };
 
   _closeByEscape = (evt) => {
     const escapeCode = 27;

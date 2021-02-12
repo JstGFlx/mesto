@@ -1,5 +1,4 @@
 // класс элемента карточки
-import { showErrorMassage } from "../utils/utils.js";
 export default class Card {
   constructor(
     { name, link, likes, _id, owner },
@@ -9,7 +8,7 @@ export default class Card {
     openPopupDelete,
     putLikeCard,
     deleteLike,
-    { handleDeleteClick }
+    showErrorMassage
   ) {
     this._title = name;
     this._image = link;
@@ -21,8 +20,8 @@ export default class Card {
     this._putLikeCard = putLikeCard;
     this._deleteLike = deleteLike;
     this._likes = likes;
-    this._handleDeleteClick = handleDeleteClick;
     this._myId = myId;
+    this._showErrorMassage = showErrorMassage;
     this._element = this._getTemplate();
     this._elementImage = this._element.querySelector(".card__image");
     this._elementDesc = this._element.querySelector(".card__name");
@@ -39,26 +38,22 @@ export default class Card {
     if (this._checkMyLike()) {
       this._deleteLike(id)
         .then((res) => {
-          const myLike = this._likes.indexOf(
-            this._likes.find((obj) => obj._id === this._myId)
-          );
-
-          this._likeCounter.textContent--;
+          this._likes = res.likes;
+          this._likeCounter.textContent = res.likes.length;
           evt.target.classList.toggle("card__like_active");
-          this._likes.splice(myLike, 1);
         })
         .catch((err) => {
-          showErrorMassage(err);
+          this._showErrorMassage(err);
         });
     } else {
       this._putLikeCard(id)
         .then((res) => {
-          this._likeCounter.textContent++;
+          this._likes = res.likes;
+          this._likeCounter.textContent = res.likes.length;
           evt.target.classList.toggle("card__like_active");
-          this._likes.push({ _id: this._myId });
         })
         .catch((err) => {
-          showErrorMassage(err);
+          this._showErrorMassage(err);
         });
     }
   }
@@ -81,7 +76,6 @@ export default class Card {
     if (this._checkMyLike()) {
       this._likeButton.classList.add("card__like_active");
     }
-
     return this._element;
   }
 
@@ -92,6 +86,8 @@ export default class Card {
     this._likeButton.addEventListener("click", (evt) => {
       this._toggleLikeTheCard(evt, this._id, this._likes);
     });
-    this._elementBtnDelete.addEventListener("click", this._handleDeleteClick);
+    this._elementBtnDelete.addEventListener("click", () => {
+      this._openPopupDelete(this._element, this._id);
+    });
   }
 }
