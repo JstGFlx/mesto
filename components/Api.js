@@ -43,7 +43,7 @@ export default class Api {
     });
   }
 
-  pathUserInfo({ name, about }) {
+  pathUserInfo(data) {
     this._renderLoadTextBtnEdit(true, this._btnSubmitEdit);
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -51,10 +51,7 @@ export default class Api {
         authorization: this._authorization,
         "Content-Type": this._contentType,
       },
-      body: JSON.stringify({
-        name: name,
-        about: about,
-      }),
+      body: JSON.stringify(data),
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -63,7 +60,7 @@ export default class Api {
     });
   }
 
-  postNewCard({ name, link }) {
+  postNewCard(data) {
     this._renderLoadTextBtnAdd(true);
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
@@ -71,10 +68,7 @@ export default class Api {
         authorization: this._authorization,
         "Content-Type": this._contentType,
       },
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
+      body: JSON.stringify(data),
     }).then((res) => {
       if (res.ok) {
         return res.json();
