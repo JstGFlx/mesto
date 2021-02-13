@@ -90,8 +90,7 @@ const popupTypeAdd = new PopupWithForm(
         });
     },
   },
-  ".popup_type_add",
-  validatorAdd.resetValidityMassage
+  ".popup_type_add"
 );
 
 function createCard(data) {
@@ -125,8 +124,7 @@ const popupTypeEdit = new PopupWithForm(
         });
     },
   },
-  ".popup_type_edit",
-  validatorEdit.resetValidityMassage
+  ".popup_type_edit"
 );
 //инициализация попапа добавления новой карточки
 const popupTypeAvatar = new PopupWithForm(
@@ -146,8 +144,7 @@ const popupTypeAvatar = new PopupWithForm(
         });
     },
   },
-  ".popup_type_avatar",
-  validatorAvatar.resetValidityMassage
+  ".popup_type_avatar"
 );
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage(".popup_type_img");
