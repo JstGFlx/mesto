@@ -42,6 +42,16 @@ const api = new Api(
   btnSubmitEdit,
   btnSubmitEditAvatar
 );
+//получение и установка начальной информации пользователя
+api
+  .getUserInfo()
+  .then((res) => {
+    userId = res._id;
+    usesInfo.setUserInfo(res);
+  })
+  .catch((err) => {
+    showErrorMassage(err);
+  });
 
 const cardsList = new Section(
   {
@@ -57,16 +67,6 @@ api
   .getInitialCards()
   .then((res) => {
     cardsList.renderItems(res);
-  })
-  .catch((err) => {
-    showErrorMassage(err);
-  });
-//получение и установка начальной информации пользователя
-api
-  .getUserInfo()
-  .then((res) => {
-    userId = res._id;
-    usesInfo.setUserInfo(res);
   })
   .catch((err) => {
     showErrorMassage(err);
