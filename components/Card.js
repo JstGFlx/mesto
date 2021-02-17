@@ -84,7 +84,7 @@ export default class Card {
       this._openPopupView(this._image, this._title);
     });
     this._likeButton.addEventListener("click", (evt) => {
-      this._toggleLikeTheCard(evt, this._id, this._likes);
+      this._toggleLikeTheCard(evt, this._id);
     });
     this._elementBtnDelete.addEventListener("click", () => {
       this._openPopupDelete(this._element, this._id);
