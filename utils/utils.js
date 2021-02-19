@@ -3,7 +3,7 @@ import {
   btnSubmitDelete,
   errorTemplate,
   errorsContainer,
-} from "../utils/constants.js";
+} from "./constants";
 
 export {
   renderLoadTextBtnEdit,
