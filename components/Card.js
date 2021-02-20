@@ -34,23 +34,23 @@ export default class Card {
     return this._template.content.querySelector(".card").cloneNode(true);
   }
 
-  _toggleLikeTheCard(evt, id) {
+  _toggleLikeTheCard() {
     if (this._checkMyLike()) {
-      this._deleteLike(id)
+      this._deleteLike(this._id)
         .then((res) => {
           this._likes = res.likes;
           this._likeCounter.textContent = res.likes.length;
-          evt.target.classList.toggle("card__like_active");
+          this._likeButton.classList.remove("card__like_active");
         })
         .catch((err) => {
           this._showErrorMassage(err);
         });
     } else {
-      this._putLikeCard(id)
+      this._putLikeCard(this._id)
         .then((res) => {
           this._likes = res.likes;
           this._likeCounter.textContent = res.likes.length;
-          evt.target.classList.toggle("card__like_active");
+          this._likeButton.classList.add("card__like_active");
         })
         .catch((err) => {
           this._showErrorMassage(err);
@@ -83,8 +83,8 @@ export default class Card {
     this._elementImage.addEventListener("click", () => {
       this._openPopupView(this._image, this._title);
     });
-    this._likeButton.addEventListener("click", (evt) => {
-      this._toggleLikeTheCard(evt, this._id);
+    this._likeButton.addEventListener("click", () => {
+      this._toggleLikeTheCard();
     });
     this._elementBtnDelete.addEventListener("click", () => {
       this._openPopupDelete(this._element, this._id);

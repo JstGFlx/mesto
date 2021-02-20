@@ -42,12 +42,13 @@ const api = new Api(
   btnSubmitEdit,
   btnSubmitEditAvatar
 );
-//получение и установка начальной информации пользователя
-api
-  .getUserInfo()
-  .then((res) => {
-    userId = res._id;
-    usesInfo.setUserInfo(res);
+
+//получение и установка начальной информации пользователя и инициализация начального списка карточек
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([info, cards]) => {
+    userId = info._id;
+    usesInfo.setUserInfo(info);
+    cardsList.renderItems(cards);
   })
   .catch((err) => {
     showErrorMassage(err);
@@ -62,15 +63,6 @@ const cardsList = new Section(
   },
   ".cards"
 );
-//инициализация начального списка карточек
-api
-  .getInitialCards()
-  .then((res) => {
-    cardsList.renderItems(res);
-  })
-  .catch((err) => {
-    showErrorMassage(err);
-  });
 
 const popupTypeAdd = new PopupWithForm(
   {
@@ -126,6 +118,7 @@ const popupTypeEdit = new PopupWithForm(
   },
   ".popup_type_edit"
 );
+
 //инициализация попапа добавления новой карточки
 const popupTypeAvatar = new PopupWithForm(
   {
@@ -146,6 +139,7 @@ const popupTypeAvatar = new PopupWithForm(
   },
   ".popup_type_avatar"
 );
+
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage(".popup_type_img");
 
@@ -156,7 +150,7 @@ const popupTypeDelete = new PopupWithDelete(
   showErrorMassage
 );
 
-//инициализация управления инфорацией профиля
+//инициализация блока управления инфорацией профиля
 const usesInfo = new UserInfo({
   name: ".profile__name",
   about: ".profile__about-me",
@@ -179,7 +173,6 @@ buttonEdit.addEventListener("click", () => {
   validatorEdit.setButtonState();
   popupTypeEdit.openPopup();
 });
-
 buttonAdd.addEventListener("click", () => {
   validatorAdd.resetValidityMassage();
   validatorAdd.reseteInputsValues();
