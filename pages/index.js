@@ -64,6 +64,38 @@ const cardsList = new Section(
   ".cards"
 );
 
+const createCard = (data) => {
+  return new Card(data, ".template", userId, {
+    handleImageClick: (image, title) => {
+      popupTypeImage.openPopup(image, title);
+    },
+    handleDeleteClick: (element, id) => {
+      popupTypeDelete.openPopup(element, id);
+    },
+    handleLikeClick: (myLike, id, deleteTheLike, addTheLike) => {
+      if (myLike) {
+        api
+          .deleteLike(id)
+          .then((res) => {
+            deleteTheLike(res);
+          })
+          .catch((err) => {
+            showErrorMassage(err);
+          });
+      } else {
+        api
+          .putLikeCard(id)
+          .then((res) => {
+            addTheLike(res);
+          })
+          .catch((err) => {
+            showErrorMassage(err);
+          });
+      }
+    },
+  });
+};
+
 const popupTypeAdd = new PopupWithForm(
   {
     submitForm: (item) => {
@@ -84,19 +116,6 @@ const popupTypeAdd = new PopupWithForm(
   },
   ".popup_type_add"
 );
-
-function createCard(data) {
-  return new Card(
-    data,
-    ".template",
-    userId,
-    popupTypeImage.openPopup,
-    popupTypeDelete.openPopup,
-    api.putLikeCard,
-    api.deleteLike,
-    showErrorMassage
-  );
-}
 
 //инициализация попапа редактирования профиля
 const popupTypeEdit = new PopupWithForm(

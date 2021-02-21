@@ -4,24 +4,18 @@ export default class Card {
     { name, link, likes, _id, owner },
     template,
     myId,
-    openPopupView,
-    openPopupDelete,
-    putLikeCard,
-    deleteLike,
-    showErrorMassage
+    { handleImageClick, handleDeleteClick, handleLikeClick }
   ) {
     this._title = name;
     this._image = link;
     this._id = _id;
     this._owner = owner;
     this._template = document.querySelector(template);
-    this._openPopupView = openPopupView;
-    this._openPopupDelete = openPopupDelete;
-    this._putLikeCard = putLikeCard;
-    this._deleteLike = deleteLike;
     this._likes = likes;
     this._myId = myId;
-    this._showErrorMassage = showErrorMassage;
+    this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
     this._element = this._getTemplate();
     this._elementImage = this._element.querySelector(".card__image");
     this._elementDesc = this._element.querySelector(".card__name");
@@ -34,35 +28,23 @@ export default class Card {
     return this._template.content.querySelector(".card").cloneNode(true);
   }
 
-  _toggleLikeTheCard() {
-    if (this._checkMyLike()) {
-      this._deleteLike(this._id)
-        .then((res) => {
-          this._likes = res.likes;
-          this._likeCounter.textContent = res.likes.length;
-          this._likeButton.classList.remove("card__like_active");
-        })
-        .catch((err) => {
-          this._showErrorMassage(err);
-        });
-    } else {
-      this._putLikeCard(this._id)
-        .then((res) => {
-          this._likes = res.likes;
-          this._likeCounter.textContent = res.likes.length;
-          this._likeButton.classList.add("card__like_active");
-        })
-        .catch((err) => {
-          this._showErrorMassage(err);
-        });
-    }
-  }
+  _deleteTheLike = (res) => {
+    this._likes = res.likes;
+    this._likeCounter.textContent = res.likes.length;
+    this._likeButton.classList.remove("card__like_active");
+  };
 
-  _checkMyLike() {
+  _addTheLike = (res) => {
+    this._likes = res.likes;
+    this._likeCounter.textContent = res.likes.length;
+    this._likeButton.classList.add("card__like_active");
+  };
+
+  _checkMyLike = () => {
     return this._likes.some((obj) => {
       return obj._id === this._myId;
     });
-  }
+  };
 
   generateCard() {
     this._elementImage.src = this._image;
@@ -81,13 +63,18 @@ export default class Card {
 
   _setEventListeners() {
     this._elementImage.addEventListener("click", () => {
-      this._openPopupView(this._image, this._title);
+      this._handleImageClick(this._image, this._title);
     });
     this._likeButton.addEventListener("click", () => {
-      this._toggleLikeTheCard();
+      this._handleLikeClick(
+        this._checkMyLike(),
+        this._id,
+        this._deleteTheLike,
+        this._addTheLike
+      );
     });
     this._elementBtnDelete.addEventListener("click", () => {
-      this._openPopupDelete(this._element, this._id);
+      this._handleDeleteClick(this._element, this._id);
     });
   }
 }
