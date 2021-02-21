@@ -9,6 +9,6 @@
 
 @media (max-width: 768px) {
   .btn_type_add {
-    width: calc(282px + (400 - 282) * ((100vw - 320px) / (650 - 320)));
+    width: 100%;
   }
 }
