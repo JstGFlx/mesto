@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 //класс попапов с формой
 export default class PopupWithForm extends Popup {
-  constructor({ submitForm }, popup, resetValidityMassage) {
+  constructor({ submitForm }, popup) {
     super(popup);
     this._submitForm = submitForm;
     this._inputList = this._popup.querySelectorAll(".popup__input");
