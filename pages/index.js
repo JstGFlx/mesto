@@ -162,12 +162,21 @@ const popupTypeAvatar = new PopupWithForm(
 //инициализация попапа увеличенной картинки
 const popupTypeImage = new PopupWithImage(".popup_type_img");
 
-const popupTypeDelete = new PopupWithDelete(
-  ".popup_type_delete",
-  api.deleteCard,
-  renderLoadTextBtnDelete,
-  showErrorMassage
-);
+const popupTypeDelete = new PopupWithDelete(".popup_type_delete", {
+  handleDeleteCard: (id, card, closePopup) => {
+    renderLoadTextBtnDelete(true);
+    api
+      .deleteCard(id)
+      .catch((err) => {
+        showErrorMassage(err);
+      })
+      .finally(() => {
+        renderLoadTextBtnDelete(false);
+        card.remove();
+        closePopup();
+      });
+  },
+});
 
 //инициализация блока управления инфорацией профиля
 const usesInfo = new UserInfo({
