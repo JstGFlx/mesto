@@ -15,8 +15,7 @@ export default class Popup {
   };
 
   _closeByEscape = (evt) => {
-    const escapeCode = 27;
-    if (evt.keyCode === escapeCode) {
+    if (evt.key == "Escape") {
       this.closePopup();
     }
   };
