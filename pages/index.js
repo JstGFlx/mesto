@@ -163,7 +163,7 @@ const popupTypeAvatar = new PopupWithForm(
 const popupTypeImage = new PopupWithImage(".popup_type_img");
 
 const popupTypeDelete = new PopupWithDelete(".popup_type_delete", {
-  handleDeleteCard: (id, card, closePopup) => {
+  handleDeleteCard: (id, card) => {
     renderLoadTextBtnDelete(true);
     api
       .deleteCard(id)
@@ -173,7 +173,7 @@ const popupTypeDelete = new PopupWithDelete(".popup_type_delete", {
       .finally(() => {
         renderLoadTextBtnDelete(false);
         card.remove();
-        closePopup();
+        popupTypeDelete.closePopup();
       });
   },
 });
