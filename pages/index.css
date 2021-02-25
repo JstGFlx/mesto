@@ -9,6 +9,13 @@
 @import url("../blocks/profile/__avatar/profile__avatar.css");
 @import url("../blocks/profile/__name/profile__name.css");
 @import url("../blocks/profile/__about-me/profile__about-me.css");
+@import url("../blocks/load-wraper/load-wraper.css");
+@import url("../blocks/load-wraper/__activity/load-wraper__activity.css");
+@import url("../blocks/load-wraper/_type/load-wraper_type_avatar.css");
+@import url("../blocks/load-wraper/_type/load-wraper_type_name.css");
+@import url("../blocks/load-wraper/_type/load-wraper_type_about.css");
+@import url("../blocks/load-wraper/_type/load-wraper_type_card.css");
+@import url("../blocks/display/display.css");
 @import url("../blocks/btn/btn.css");
 @import url("../blocks/btn/_visible/btn_visible.css");
 @import url("../blocks/btn/_margin/btn_margin_s.css");

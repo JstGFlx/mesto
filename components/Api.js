@@ -4,6 +4,7 @@ export default class Api {
     renderLoadTextBtnEdit,
     renderLoadTextBtnAdd,
     renderLoadTextBtnDelete,
+    displayLoadWrapper,
     btnSubmitEdit,
     btnSubmitEditAvatar
   ) {
@@ -13,11 +14,13 @@ export default class Api {
     this._renderLoadTextBtnEdit = renderLoadTextBtnEdit;
     this._renderLoadTextBtnAdd = renderLoadTextBtnAdd;
     this._renderLoadTextBtnDelete = renderLoadTextBtnDelete;
+    this._displayLoadWrapper = displayLoadWrapper;
     this._btnSubmitEdit = btnSubmitEdit;
     this._btnSubmitEditAvatar = btnSubmitEditAvatar;
   }
 
   getInitialCards() {
+    this._displayLoadWrapper(true);
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         authorization: this._authorization,
@@ -31,6 +34,7 @@ export default class Api {
   }
 
   getUserInfo() {
+    this._displayLoadWrapper(true);
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         authorization: this._authorization,

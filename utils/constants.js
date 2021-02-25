@@ -9,6 +9,7 @@ export {
   btnSubmitEditAvatar,
   errorTemplate,
   errorsContainer,
+  loadWrappers,
 };
 
 // конфиг для класса валидации
@@ -32,3 +33,4 @@ const btnSubmitAdd = document.querySelector(".popup__button_type_add");
 const btnSubmitDelete = document.querySelector(".popup__button_type_delete");
 const errorTemplate = document.querySelector(".error__template");
 const errorsContainer = document.querySelector(".errors");
+const loadWrappers = document.querySelectorAll(".load-wraper");

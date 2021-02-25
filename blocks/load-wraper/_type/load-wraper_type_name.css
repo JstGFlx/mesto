@@ -1,0 +1,12 @@
+.load-wraper_type_name {
+  width: 262px;
+  height: 43px;
+}
+
+@media (max-width: 768px) {
+  .load-wraper_type_name {
+    margin-left: 61px;
+    width: 207px;
+    height: 35px;
+  }
+}

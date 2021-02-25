@@ -10,6 +10,7 @@ import {
   renderLoadTextBtnAdd,
   showErrorMassage,
   renderLoadTextBtnDelete,
+  displayLoadWrapper,
 } from "../utils/utils.js";
 import Api from "../components/Api.js";
 import {
@@ -39,6 +40,7 @@ const api = new Api(
   renderLoadTextBtnEdit,
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
+  displayLoadWrapper,
   btnSubmitEdit,
   btnSubmitEditAvatar
 );
@@ -52,6 +54,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   })
   .catch((err) => {
     showErrorMassage(err);
+  })
+  .finally(() => {
+    displayLoadWrapper(false);
   });
 
 const cardsList = new Section(

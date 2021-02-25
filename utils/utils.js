@@ -3,6 +3,8 @@ import {
   btnSubmitDelete,
   errorTemplate,
   errorsContainer,
+  loadWrappers,
+  profileAvatar,
 } from "./constants";
 
 export {
@@ -10,7 +12,21 @@ export {
   renderLoadTextBtnAdd,
   renderLoadTextBtnDelete,
   showErrorMassage,
+  displayLoadWrapper,
 };
+
+function displayLoadWrapper(isDisplay) {
+  if (isDisplay) {
+    loadWrappers.forEach((wraper) => {
+      wraper.classList.add("display");
+    });
+  } else {
+    loadWrappers.forEach((wraper) => {
+      wraper.classList.remove("display");
+    });
+    profileAvatar.classList.add("display");
+  }
+}
 
 function renderLoadTextBtnEdit(isLoading, btn) {
   if (isLoading) {
