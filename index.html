@@ -1,149 +1,238 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initi  al-scale=1.0" />
+    <title>Mesto</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mesto</title>
-</head>
-
-<body class="body">
-  <div class="page">
-    <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo/Vector.svg')%>" alt="логотип место" />
-    </header>
-    <main>
-      <section class="profile">
-        <div class="profile__container">
-          <div class="load-wraper load-wraper_type_avatar">
+  <body class="body">
+    <div class="page">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="<%=require('./images/logo/Vector.svg')%>"
+          alt="логотип место"
+        />
+      </header>
+      <main>
+        <section class="profile">
+          <div class="profile__container">
+            <div class="load-wraper load-wraper_type_avatar">
+              <div class="load-wraper__activity"></div>
+            </div>
+            <div class="profile__avatar"></div>
+            <div class="profile__info">
+              <div class="load-wraper load-wraper_type_name">
+                <div class="load-wraper__activity"></div>
+              </div>
+              <h1 class="profile__name"></h1>
+              <button
+                class="btn btn_type_edit"
+                type="button"
+                aria-label="изменить"
+              ></button>
+              <div class="load-wraper load-wraper_type_about">
+                <div class="load-wraper__activity"></div>
+              </div>
+              <p class="profile__about-me"></p>
+            </div>
+          </div>
+          <button
+            class="btn btn_type_add"
+            type="button"
+            aria-label="добавить"
+          ></button>
+        </section>
+        <section class="cards">
+          <div class="load-wraper load-wraper_type_card">
             <div class="load-wraper__activity"></div>
           </div>
-          <div class="profile__avatar">
+          <div class="load-wraper load-wraper_type_card">
+            <div class="load-wraper__activity"></div>
           </div>
-          <div class="profile__info">
-            <div class="load-wraper load-wraper_type_name">
-              <div class="load-wraper__activity"></div>
+          <div class="load-wraper load-wraper_type_card">
+            <div class="load-wraper__activity"></div>
+          </div>
+          <div class="load-wraper load-wraper_type_card">
+            <div class="load-wraper__activity"></div>
+          </div>
+          <div class="load-wraper load-wraper_type_card">
+            <div class="load-wraper__activity"></div>
+          </div>
+          <div class="load-wraper load-wraper_type_card">
+            <div class="load-wraper__activity"></div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      </footer>
+      <template class="template">
+        <article class="card">
+          <button
+            class="btn btn_type_delete"
+            type="button"
+            aria-label="удалить"
+          ></button>
+          <img class="card__image" src="#" alt="#" />
+          <div class="card__block">
+            <h2 class="card__name"></h2>
+            <div class="card_like-container">
+              <button
+                class="card__like"
+                type="button"
+                aria-label="мне нравится"
+              ></button>
+              <p class="card__like-counter"></p>
             </div>
-            <h1 class="profile__name"></h1>
-            <button class="btn btn_type_edit" type="button" aria-label="изменить"></button>
-            <div class="load-wraper load-wraper_type_about">
-              <div class="load-wraper__activity"></div>
-            </div>
-            <p class="profile__about-me"></p>
           </div>
+        </article>
+      </template>
+      <div class="popup popup_type_edit">
+        <div class="popup__container">
+          <button
+            class="btn btn_type_close"
+            type="button"
+            aria-label="закрыть"
+          ></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" name="edit-profile" novalidate>
+            <input
+              class="popup__input popup__input_text_name"
+              name="name"
+              id="name-profile"
+              type="text"
+              placeholder="Имя"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__error" id="name-profile-error"></span>
+            <input
+              class="popup__input popup__input_text_about-me"
+              name="about"
+              id="about-profile"
+              type="text"
+              placeholder="О себе"
+              minlength="2"
+              maxlength="200"
+              required
+              novalidate
+            />
+            <span class="popup__error" id="about-profile-error"></span>
+            <button
+              class="btn btn_margin_l popup__button popup__button_type_edit"
+              type="submit"
+              aria-label="сохранить"
+            >
+              Сохранить
+            </button>
+          </form>
         </div>
-        <button class="btn btn_type_add" type="button" aria-label="добавить"></button>
-      </section>
-      <section class="cards">
-        <div class="load-wraper load-wraper_type_card">
-          <div class="load-wraper__activity"></div>
+      </div>
+      <div class="popup popup_type_add">
+        <div class="popup__container">
+          <button
+            class="btn btn_type_close"
+            type="button"
+            aria-label="закрыть"
+          ></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" name="add-new-card" novalidate>
+            <input
+              class="popup__input popup__input_text_title"
+              name="name"
+              id="name-card"
+              type="text"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__error" id="name-card-error"></span>
+            <input
+              class="popup__input popup__input_text_link"
+              name="link"
+              id="url-card"
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__error" id="url-card-error"></span>
+            <button
+              class="btn btn_margin_l popup__button popup__button_type_add"
+              type="submit"
+              aria-label="сохранить"
+            >
+              Создать
+            </button>
+          </form>
         </div>
-        <div class="load-wraper load-wraper_type_card">
-          <div class="load-wraper__activity"></div>
+      </div>
+      <div class="popup popup_type_avatar">
+        <div class="popup__container">
+          <button
+            class="btn btn_type_close"
+            type="button"
+            aria-label="закрыть"
+          ></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form class="popup__form" name="change-avatar" novalidate>
+            <input
+              class="popup__input popup__input_text_link"
+              name="link"
+              id="url-avatar"
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__error" id="url-avatar-error"></span>
+            <button
+              class="btn btn_margin_l popup__button popup__button_type_edit-avatar"
+              type="submit"
+              aria-label="сохранить"
+            >
+              Сохранить
+            </button>
+          </form>
         </div>
-        <div class="load-wraper load-wraper_type_card">
-          <div class="load-wraper__activity"></div>
+      </div>
+      <div class="popup popup_type_img">
+        <div class="popup__wrapper">
+          <button
+            class="btn btn_type_close"
+            type="button"
+            aria-label="закрыть"
+          ></button>
+          <img class="popup__image" src="#" alt="#" />
+          <p class="popup__description"></p>
         </div>
-        <div class="load-wraper load-wraper_type_card">
-          <div class="load-wraper__activity"></div>
+      </div>
+      <div class="popup popup_type_delete">
+        <div class="popup__container">
+          <button
+            class="btn btn_type_close"
+            type="button"
+            aria-label="закрыть"
+          ></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button
+            class="btn btn_margin_s popup__button popup__button_type_delete"
+            type="button"
+            aria-label="сохранить"
+          >
+            Да
+          </button>
         </div>
-        <div class="load-wraper load-wraper_type_card">
-          <div class="load-wraper__activity"></div>
-        </div>
-        <div class="load-wraper load-wraper_type_card">
-          <div class="load-wraper__activity"></div>
-        </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-    </footer>
-    <template class="template">
-      <article class="card">
-        <button class="btn btn_type_delete" type="button" aria-label="удалить"></button>
-        <img class="card__image" src="#" alt="#" />
-        <div class="card__block">
-          <h2 class="card__name"></h2>
-          <div class="card_like-container">
-            <button class="card__like" type="button" aria-label="мне нравится"></button>
-            <p class="card__like-counter"></p>
+      </div>
+      <div class="errors">
+        <template class="error__template">
+          <div class="error">
+            <p class="error__massage"></p>
           </div>
-        </div>
-      </article>
-    </template>
-    <div class="popup popup_type_edit">
-      <div class="popup__container">
-        <button class="btn btn_type_close" type="button" aria-label="закрыть"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="edit-profile" novalidate>
-          <input class="popup__input popup__input_text_name" name="name" id="name-profile" type="text" placeholder="Имя"
-            minlength="2" maxlength="40" required />
-          <span class="popup__error" id="name-profile-error"></span>
-          <input class="popup__input popup__input_text_about-me" name="about" id="about-profile" type="text"
-            placeholder="О себе" minlength="2" maxlength="200" required novalidate />
-          <span class="popup__error" id="about-profile-error"></span>
-          <button class="btn btn_margin_l popup__button popup__button_type_edit" type="submit" aria-label="сохранить">
-            Сохранить
-          </button>
-        </form>
+        </template>
       </div>
     </div>
-    <div class="popup popup_type_add">
-      <div class="popup__container">
-        <button class="btn btn_type_close" type="button" aria-label="закрыть"></button>
-        <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="add-new-card" novalidate>
-          <input class="popup__input popup__input_text_title" name="name" id="name-card" type="text"
-            placeholder="Название" minlength="2" maxlength="30" required />
-          <span class="popup__error" id="name-card-error"></span>
-          <input class="popup__input popup__input_text_link" name="link" id="url-card" type="url"
-            placeholder="Ссылка на картинку" required />
-          <span class="popup__error" id="url-card-error"></span>
-          <button class="btn btn_margin_l popup__button popup__button_type_add" type="submit" aria-label="сохранить">
-            Создать
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="popup popup_type_avatar">
-      <div class="popup__container">
-        <button class="btn btn_type_close" type="button" aria-label="закрыть"></button>
-        <h2 class="popup__title">Обновить аватар</h2>
-        <form class="popup__form" name="change-avatar" novalidate>
-          <input class="popup__input popup__input_text_link" name="link" id="url-avatar" type="url"
-            placeholder="Ссылка на картинку" required />
-          <span class="popup__error" id="url-avatar-error"></span>
-          <button class="btn btn_margin_l popup__button popup__button_type_edit-avatar" type="submit"
-            aria-label="сохранить">
-            Сохранить
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="popup popup_type_img">
-      <div class="popup__wrapper">
-        <button class="btn btn_type_close" type="button" aria-label="закрыть"></button>
-        <img class="popup__image" src="#" alt="#" />
-        <p class="popup__description"></p>
-      </div>
-    </div>
-  </div>
-  <div class="popup popup_type_delete">
-    <div class="popup__container">
-      <button class="btn btn_type_close" type="button" aria-label="закрыть"></button>
-      <h2 class="popup__title">Вы уверены?</h2>
-      <button class="btn btn_margin_s popup__button popup__button_type_delete" type="button" aria-label="сохранить">
-        Да
-      </button>
-    </div>
-  </div>
-  <div class="errors">
-    <template class="error__template">
-      <div class="error">
-        <p class="error__massage"></p>
-      </div>
-    </template>
-  </div>
-</body>
-
+  </body>
 </html>
